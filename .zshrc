@@ -25,6 +25,7 @@ alias reload="source ~/.zshrc"
 alias homm="cd /home/alexey/.wine/drive_c/Games/Heroes\ of\ Might\ and\ Magic\ III; ./run-homm.sh"
 alias upd="sudo apt-get update; sudo apt-get upgrade -y; sudo apt-get autoclean; sudo apt-get autoremove"
 alias advice="advice | cowsay"
+alias ta="tmux attach || tmux new"
 
 ### BEGIN MARKS ###
 export MARKPATH=$HOME/.marks

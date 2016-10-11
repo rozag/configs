@@ -27,6 +27,19 @@ alias upd="sudo apt-get update; sudo apt-get upgrade -y; sudo apt-get autoclean;
 alias advice="advice | cowsay"
 alias ta="tmux attach || tmux new"
 
+### BEGIN UNALIAS GIT PLUGIN ###
+unalias glg
+unalias glgg
+unalias glgga
+unalias glgm
+unalias glgp
+unalias glo
+unalias glog
+unalias gloga
+unalias glol
+unalias gunwip
+### END UNALIAS GIT PLUGIN ###
+
 ### BEGIN MARKS ###
 export MARKPATH=$HOME/.marks
 function jump { 

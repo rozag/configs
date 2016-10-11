@@ -64,4 +64,11 @@ compctl -K _completemarks unmark
 alias jm="jump"
 ### END MARKS ###
 
+# Print great advice
 advice
+
+# Run tmux if not running
+if ! { [ "$TERM" = "screen" ] && [ -n "$TMUX" ]; } then
+    ta
+    exit
+fi

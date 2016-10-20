@@ -4,3 +4,7 @@
 [credential]
 	helper = cache --timeout=3600
 [alias]
+[diff]
+	tool = vimdiff
+[diff "androidstrings"]
+    textconv = "iconv -f utf-16 -t utf-8"

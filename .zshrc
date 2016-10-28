@@ -34,7 +34,7 @@ alias apkinstall="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X ins
 alias rmapp="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X uninstall $1"
 alias clearapp="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X shell pm clear $1"
 alias deviceip="adb shell ip -f inet addr show wlan0 | tail -n +2 | head -n 1 | cut -d '/' -f 1 | xargs -n1 | tail -n +2"
-alias wifiadb="adb tcpip 5555 && adb connect '$(deviceip):5555' && unset DEVICE_IP"
+alias wifiadb="adb tcpip 5555 && adb connect $(deviceip):5555 && unset DEVICE_IP"
 
 ### BEGIN UNALIAS GIT PLUGIN ###
 unalias glg

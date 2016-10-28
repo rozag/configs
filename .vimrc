@@ -150,6 +150,19 @@ set tabstop=4
 set softtabstop=4
 set expandtab
 
+" Increase GVIM smoothness
+set ttyfast
+
+" Adopt GVIM size
+if has("gui_running")
+  " GUI is running or is about to start.
+  " Maximize gvim window (for an alternative on Windows, see simalt below).
+  set lines=36 columns=130
+endif
+
+" Set GVIM font
+set guifont=Hack\ 11
+
 " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
 " which is the default
 map Y y$

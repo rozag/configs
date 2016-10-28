@@ -18,6 +18,7 @@ PATH=$PATH:/home/alexey/.virtualenvs
 PATH=$PATH:/media/alexey/Dev/Workspace/kakava
 PATH=$PATH:/media/alexey/Dev/appengine-sdk/
 PATH=$PATH:/usr/local/go/bin
+PATH=$PATH:/media/alexey/Dev/Workspace/Tools
 
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"

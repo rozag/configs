@@ -28,6 +28,7 @@ alias upd="sudo apt-get update; sudo apt-get upgrade -y; sudo apt-get autoclean;
 alias advice="advice | cowsay"
 alias ta="tmux attach || tmux new"
 alias python="python3"
+alias :q="exit"
 
 # Android development bash aliases (https://medium.com/@jonfhancock/bash-your-way-to-better-android-development-1169bc3e0424#.ezlrvqk5w)
 alias startintent="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X shell am start $1"

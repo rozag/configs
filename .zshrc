@@ -93,3 +93,10 @@ if ! { [ "$TERM" = "screen" ] && [ -n "$TMUX" ]; } then
     ta
     exit
 fi
+
+# Move terminal to 3rd workspace after startup
+a=$(uptime -p | cut -d ' ' -f 2)
+if [ $a -lt 3 ]; then
+    xdotool search --class gnome-terminal set_desktop_for_window %@ 2
+fi
+unset a

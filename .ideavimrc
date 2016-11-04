@@ -1,1 +1,5 @@
+" Read the original .vimrc
 source ~/.vimrc
+
+" Enable vim-surround support
+set surround

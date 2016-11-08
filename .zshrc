@@ -28,6 +28,8 @@ alias upd="sudo apt-get update; sudo apt-get upgrade -y; sudo apt-get autoclean;
 alias advice="advice | cowsay"
 alias ta="tmux attach || tmux new"
 alias python="python3"
+alias pip="pip3"
+alias autopep8="/home/alexey/.local/lib/python3.5/site-packages/autopep8.py"
 alias :q="exit"
 
 # Android development bash aliases (https://medium.com/@jonfhancock/bash-your-way-to-better-android-development-1169bc3e0424#.ezlrvqk5w)

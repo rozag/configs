@@ -30,6 +30,12 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
+" Disable arrow keys in insert mode
+inoremap <Up> <NOP>
+inoremap <Down> <NOP>
+inoremap <Left> <NOP>
+inoremap <Right> <NOP>
+
 " GVIM options
 " :set guioptions-=m  "remove menu bar
 :set guioptions-=T  "remove toolbar
@@ -175,9 +181,11 @@ nnoremap <C-L> :nohl<CR><C-L>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
-" Open NERDTree with Alt+F1
+" Open NERDTree with Ctrl+n
 map <C-n> :NERDTreeToggle<CR>
 
 " Close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" Enable relative numbers
+set relativenumber

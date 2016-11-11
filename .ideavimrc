@@ -3,3 +3,6 @@ source ~/.vimrc
 
 " Enable vim-surround support
 set surround
+
+" Disable relative line numbers cause it lags
+set norelativenumber

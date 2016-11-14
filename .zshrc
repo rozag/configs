@@ -22,7 +22,6 @@ PATH=$PATH:/media/alexey/Dev/Workspace/Tools
 
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
-alias reload="source ~/.zshrc"
 alias homm="cd /home/alexey/.wine/drive_c/Games/Heroes\ of\ Might\ and\ Magic\ III; ./run-homm.sh"
 alias upd="sudo apt-get update; sudo apt-get upgrade -y; sudo apt-get autoclean; sudo apt-get autoremove"
 alias advice="advice | cowsay"

@@ -6,7 +6,7 @@ export GOPATH=/media/alexey/Dev/Workspace/golang/
 export ANDROID_HVPROTO=ddm
 export JAVA_HOME="/opt/java/jdk1.8.0_74/"
 
-plugins=(git vi-mode)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 

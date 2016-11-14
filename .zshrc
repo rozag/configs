@@ -50,6 +50,11 @@ alias wifiadb='adb start-server && \
     xargs adb && \
     adb devices'
 
+# Pull database from device
+function pulldevdb {
+   adb exec-out run-as $1 cat databases/$2 > $2
+}
+
 ### BEGIN UNALIAS GIT PLUGIN ###
 unalias glg
 unalias glgg

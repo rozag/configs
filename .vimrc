@@ -31,10 +31,10 @@ noremap <Left> <NOP>
 noremap <Right> <NOP>
 
 " Disable arrow keys in insert mode
-inoremap <Up> <NOP>
-inoremap <Down> <NOP>
-inoremap <Left> <NOP>
-inoremap <Right> <NOP>
+" inoremap <Up> <NOP>
+" inoremap <Down> <NOP>
+" inoremap <Left> <NOP>
+" inoremap <Right> <NOP>
 
 " GVIM options
 " :set guioptions-=m  "remove menu bar

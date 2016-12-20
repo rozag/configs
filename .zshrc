@@ -10,15 +10,15 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-ENABLE_CORRECTION="true"
+export ENABLE_CORRECTION="true"
 
-PATH=$PATH:/media/alexey/Dev/Android/sdk/platform-tools/
-PATH=$PATH:/media/alexey/Dev/lib/phantomjs-2.1.1-linux-x86_64/bin
-PATH=$PATH:/home/alexey/.virtualenvs
-PATH=$PATH:/media/alexey/Dev/Workspace/kakava
-PATH=$PATH:/media/alexey/Dev/appengine-sdk/
-PATH=$PATH:/usr/local/go/bin
-PATH=$PATH:/media/alexey/Dev/Workspace/Tools
+export PATH=$PATH:/media/alexey/Dev/Android/sdk/platform-tools/
+export PATH=$PATH:/media/alexey/Dev/lib/phantomjs-2.1.1-linux-x86_64/bin
+export PATH=$PATH:/home/alexey/.virtualenvs
+export PATH=$PATH:/media/alexey/Dev/Workspace/kakava
+export PATH=$PATH:/media/alexey/Dev/appengine-sdk/
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/media/alexey/Dev/Workspace/Tools
 
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
@@ -93,11 +93,8 @@ compctl -K _completemarks unmark
 alias jm="jump"
 ### END MARKS ###
 
-# Print great advice
-advice
-
 # Run tmux if not running
-if ! { [ "$TERM" = "screen" ] && [ -n "$TMUX" ]; } then
+if [ "$TERM" != "" ] && ! { [ "$TERM" = "screen" ] && [ -n "$TMUX" ]; } then
     ta
     exit
 fi
@@ -109,3 +106,6 @@ if [ $a -lt 180 ]; then
     xdotool search --class gnome-terminal set_desktop_for_window %@ 2
 fi
 unset a
+
+# Print great advice
+advice

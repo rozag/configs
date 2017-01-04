@@ -21,6 +21,7 @@ alias ohmyzsh="vim ~/.oh-my-zsh"
 alias advice="advice | cowsay"
 alias :q="exit"
 alias gmnf="git merge --no-ff"
+alias upd="sudo dnf upgrade -y"
 
 # Android development bash aliases (https://medium.com/@jonfhancock/bash-your-way-to-better-android-development-1169bc3e0424#.ezlrvqk5w)
 alias startintent="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X shell am start $1"

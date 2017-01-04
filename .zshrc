@@ -2,9 +2,10 @@ export ZSH=/home/alexey/.oh-my-zsh
 export LANG=en_US.UTF-8
 export EDITOR="vim"
 export ZSH_THEME="agnoster"
-export GOPATH=/media/alexey/Dev/Workspace/golang/
 export ANDROID_HVPROTO=ddm
-export JAVA_HOME="/opt/java/jdk1.8.0_74/"
+export DATA=/mnt/095CBE2700CF3D5F
+export DEV=/mnt/33c3c684-3741-437e-92a2-e4d7432df7aa
+# export JAVA_HOME="/opt/java/jdk1.8.0_74/" TODO
 
 plugins=(git)
 
@@ -12,23 +13,12 @@ source $ZSH/oh-my-zsh.sh
 
 export ENABLE_CORRECTION="true"
 
-export PATH=$PATH:/media/alexey/Dev/Android/sdk/platform-tools/
-export PATH=$PATH:/media/alexey/Dev/lib/phantomjs-2.1.1-linux-x86_64/bin
-export PATH=$PATH:/home/alexey/.virtualenvs
-export PATH=$PATH:/media/alexey/Dev/Workspace/kakava
-export PATH=$PATH:/media/alexey/Dev/appengine-sdk/
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:/media/alexey/Dev/Workspace/Tools
+export PATH=$PATH:$DEV/lib/android-sdk/platform-tools
+export PATH=$PATH:$DEV/workspace/kakava
 
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
-alias homm="cd /home/alexey/.wine/drive_c/Games/Heroes\ of\ Might\ and\ Magic\ III; ./run-homm.sh"
-alias upd="sudo apt-get update; sudo apt-get upgrade -y; sudo apt-get autoclean; sudo apt-get autoremove"
 alias advice="advice | cowsay"
-alias ta="tmux attach || tmux new"
-alias python="python3"
-alias pip="pip3"
-alias autopep8="/home/alexey/.local/lib/python3.5/site-packages/autopep8.py"
 alias :q="exit"
 alias gmnf="git merge --no-ff"
 
@@ -92,20 +82,6 @@ compctl -K _completemarks unmark
 
 alias jm="jump"
 ### END MARKS ###
-
-# Run tmux if not running
-if [ "$TERM" != "" ] && ! { [ "$TERM" = "screen" ] && [ -n "$TMUX" ]; } then
-    ta
-    exit
-fi
-
-# Move terminal to 3rd workspace after startup
-a=$(cat /proc/uptime | cut -d ' ' -f 1)
-a=$( printf "%.0f" $a )
-if [ $a -lt 180 ]; then
-    xdotool search --class gnome-terminal set_desktop_for_window %@ 2
-fi
-unset a
 
 # Print great advice
 advice

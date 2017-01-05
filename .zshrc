@@ -16,6 +16,7 @@ export ENABLE_CORRECTION="true"
 export PATH=$PATH:$DEV/lib/android-sdk/platform-tools
 export PATH=$PATH:$DEV/workspace/kakava
 
+alias todo="vim ~/TODO.org"
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias advice="advice | cowsay"
@@ -41,6 +42,17 @@ alias wifiadb='adb start-server && \
     awk '"'"'{print "connect", $1":5555"}'"'"' | \
     xargs adb && \
     adb devices'
+
+# Android reverse engineering aliases
+export AHACK=$DEV/lib/android-hack
+export ANDROID_HOME=$DEV/lib/android-sdk
+
+alias apktool='java -jar $AHACK/apktool_2.2.1.jar'
+alias jadx-gui='$AHACK/jadx/bin/jadx-gui'
+alias baksmali='java -jar $AHACK/baksmali-2.1.3.jar'
+alias sign='java -jar $AHACK/sign.jar'
+alias javac='javac -classpath $ANDROID_HOME/platforms/android-25/android.jar'
+alias dx='$ANDROID_HOME/build-tools/25.0.2/dx'
 
 # Pull database from device
 function pulldevdb {

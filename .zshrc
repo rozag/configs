@@ -53,6 +53,7 @@ alias baksmali='java -jar $AHACK/baksmali-2.1.3.jar'
 alias sign='java -jar $AHACK/sign.jar'
 alias javac='javac -classpath $ANDROID_HOME/platforms/android-25/android.jar'
 alias dx='$ANDROID_HOME/build-tools/25.0.2/dx'
+alias dex2jar='$AHACK/dex2jar/d2j-dex2jar.sh'
 
 # Pull database from device
 function pulldevdb {

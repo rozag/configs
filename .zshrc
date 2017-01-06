@@ -45,7 +45,8 @@ alias wifiadb='adb start-server && \
     awk '"'"'{print "connect", $1":5555"}'"'"' | \
     xargs adb && \
     adb devices'
-alias w='./gradlew'
+alias w='./gradlew --daemon'
+alias wo='w --offline'
 
 # Android reverse engineering aliases
 export AHACK=$DEV/lib/android-hack

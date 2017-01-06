@@ -25,6 +25,7 @@ alias gmnf="git merge --no-ff"
 alias upd="sudo dnf upgrade -y"
 alias radio="mpv --volume=80 -playlist"
 alias tarcd='tar -czf "../${PWD##*/}.tar.gz" .'
+alias wtr='curl wttr.in/moscow'
 
 # Android development bash aliases (https://medium.com/@jonfhancock/bash-your-way-to-better-android-development-1169bc3e0424#.ezlrvqk5w)
 alias startintent="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X shell am start $1"
@@ -44,6 +45,7 @@ alias wifiadb='adb start-server && \
     awk '"'"'{print "connect", $1":5555"}'"'"' | \
     xargs adb && \
     adb devices'
+alias w='./gradlew'
 
 # Android reverse engineering aliases
 export AHACK=$DEV/lib/android-hack
@@ -56,6 +58,7 @@ alias sign='java -jar $AHACK/sign.jar'
 alias javac='javac -classpath $ANDROID_HOME/platforms/android-25/android.jar'
 alias dx='$ANDROID_HOME/build-tools/25.0.2/dx'
 alias dex2jar='$AHACK/dex2jar/d2j-dex2jar.sh'
+alias backdoor-apk='$AHACK/backdoor-apk/backdoor-apk.sh'
 
 # Pull database from device
 function pulldevdb {

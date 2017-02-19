@@ -7,6 +7,9 @@ export ZSH_THEME="agnoster"
 export PATH=$PATH:$ME/anaconda3/bin
 export PATH=$PATH:$ME/Library/Android/sdk/platform-tools
 
+export GOPATH=$HOME/workspace/go
+export PATH=$PATH:$(go env GOPATH)/bin
+
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh

@@ -45,6 +45,7 @@ alias wifiadb='adb start-server && \
     awk '"'"'{print "connect", $1":5555"}'"'"' | \
     xargs adb && \
     adb devices'
+alias devs="adb devices"
 alias w='./gradlew --daemon'
 alias wo='w --offline'
 

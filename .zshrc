@@ -26,6 +26,7 @@ alias kakava='python3 /Users/alexey/workspace/kakava/kakava'
 alias wuzz='"$GOPATH/bin/wuzz"'
 alias gmnf="git merge --no-ff"
 alias gdf="git diff-tree --no-commit-id --name-only -r"
+alias gcob="git checkout -b"
 
 # Android development bash aliases (https://medium.com/@jonfhancock/bash-your-way-to-better-android-development-1169bc3e0424#.ezlrvqk5w)
 alias startintent="adb devices | tail -n +2 | cut -sf 1 | xargs -I X adb -s X shell am start $1"

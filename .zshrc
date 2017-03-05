@@ -7,8 +7,15 @@ export ZSH_THEME="agnoster"
 export PATH=$PATH:$ME/anaconda3/bin
 export PATH=$PATH:$ME/Library/Android/sdk/platform-tools
 
+# Go related stuff
 export GOPATH=$HOME/workspace/go
 export PATH=$PATH:$(go env GOPATH)/bin
+
+# Python related stuff
+export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+export PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
+export PATH="/Users/alexey/anaconda3/bin:$PATH"
+export PATH="/usr/local/lib/python3.6/site-packages:$PATH"
 
 plugins=(git)
 

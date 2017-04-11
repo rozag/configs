@@ -1,5 +1,12 @@
 execute pathogen#infect()
 
+" Search down the subfolders
+" :find *Activity.<TAB>
+set path+=**
+
+" Create the 'tags' file
+command! MakeTags !ctags -R .
+
 " Colorcheme
 syntax enable
 set background=dark

@@ -32,6 +32,7 @@ alias wtr='curl wttr.in/moscow'
 alias kakava='python3 /Users/alexey/workspace/kakava/kakava'
 alias wuzz='"$GOPATH/bin/wuzz"'
 alias gmnf="git merge --no-ff"
+alias gd="git difftool --extcmd icdiff --no-prompt"
 alias gdf="git diff-tree --no-commit-id --name-only -r"
 alias gcob="git checkout -b"
 

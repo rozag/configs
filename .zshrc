@@ -30,6 +30,7 @@ alias :q="exit"
 alias tarcd='tar -czf "../${PWD##*/}.tar.gz" .'
 alias wtr='curl wttr.in/moscow'
 alias kakava='python3 /Users/alexey/workspace/kakava/kakava'
+alias v='vim'
 alias wuzz='"$GOPATH/bin/wuzz"'
 alias gmnf="git merge --no-ff"
 alias gd="git icdiff"

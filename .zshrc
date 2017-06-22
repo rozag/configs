@@ -17,6 +17,9 @@ export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
 export PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
 export PATH="/usr/local/lib/python3.6/site-packages:$PATH"
 
+# Gradle completion
+fpath=($HOME/.zsh/gradle-completion $fpath)
+
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh

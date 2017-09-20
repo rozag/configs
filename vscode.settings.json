@@ -1,0 +1,21 @@
+{
+    // Vim plugin notification disabled
+    "vim.disableAnnoyingNeovimMessage": true,
+
+    // What to open on startup
+    "workbench.startupEditor": "newUntitledFile",
+
+    // Color scheme
+    "workbench.colorTheme": "Monokai Dimmed",
+
+    // Font stuff
+    "editor.fontSize": 10,
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+
+    // vscode-icons plugin stuff
+    "workbench.iconTheme": "vscode-icons", 
+
+    // Disable git, I use external tool
+    "git.enabled": false
+}

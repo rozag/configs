@@ -115,7 +115,7 @@ function marks {
     ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/ -/g' && echo
 }
 function _completemarks {
-  reply=($(ls $MARKPATH))
+    reply=($(ls $MARKPATH))
 }
 
 compctl -K _completemarks jump
@@ -123,6 +123,29 @@ compctl -K _completemarks unmark
 
 alias jm="jump"
 ### END MARKS ###
+
+# Short name to react-native init blah-blah...
+function rninit {
+    if [ -z ${rndir+x} ]; then 
+        echo "rndir is unset"; 
+    else 
+        echo "rndir is set to '$rndir'"; 
+    fi
+    if [ -z ${rnname+x} ]; then 
+        echo "rnname is unset"; 
+    else 
+        echo "rnname is set to '$rnname'"; 
+    fi
+    md $rndir
+    cd $rndir
+    react-native init $rnname
+    mv $rnname/* ../$rndir
+    mv $rnname/.* ../$rndir
+    rm -r $rnname
+    ls -la
+    unset $rndir
+    unset $rnname
+}
 
 # Print great advice
 advice

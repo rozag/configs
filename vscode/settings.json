@@ -25,5 +25,5 @@
 
     // JavaScript Standard Style plugin
     "javascript.validate.enable": false,
-    "standard.autoFixOnSave": true
+    "standard.autoFixOnSave": false
 }

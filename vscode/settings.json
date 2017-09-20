@@ -6,7 +6,7 @@
     "workbench.startupEditor": "newUntitledFile",
 
     // Color scheme
-    "workbench.colorTheme": "Monokai Dimmed",
+    "workbench.colorTheme": "Monokai",
 
     // Font stuff
     "editor.fontSize": 10,
@@ -17,5 +17,13 @@
     "workbench.iconTheme": "vscode-icons", 
 
     // Disable git, I use external tool
-    "git.enabled": false
+    "git.enabled": false,
+    "workbench.activityBar.visible": true,
+
+    // Show some of whitespaces
+    "editor.renderWhitespace": "boundary",
+
+    // JavaScript Standard Style plugin
+    "javascript.validate.enable": false,
+    "standard.autoFixOnSave": true
 }

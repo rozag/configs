@@ -23,6 +23,9 @@ export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 # Gradle completion
 fpath=($HOME/.zsh/gradle-completion $fpath)
 
+# Android Device Monitor stuff
+export ANDROID_HVPROTO=ddm
+
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh

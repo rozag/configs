@@ -32,5 +32,6 @@
     "editor.minimap.enabled": false,
 
     // Word wrapping
-    "editor.wordWrap": "on"
+    "editor.wordWrap": "on",
+    "extensions.ignoreRecommendations": false
 }

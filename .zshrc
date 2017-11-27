@@ -150,5 +150,10 @@ function rninit {
     unset $rnname
 }
 
+# logbook function - https://routley.io/tech/2017/11/23/logbook.html
+function lb() {
+    vim ~/logbook/$(date '+%Y-%m-%d').md
+}
+
 # Print great advice
 advice

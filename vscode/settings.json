@@ -33,5 +33,6 @@
 
     // Word wrapping
     "editor.wordWrap": "on",
-    "extensions.ignoreRecommendations": false
+    "extensions.ignoreRecommendations": false,
+    "window.zoomLevel": 0
 }

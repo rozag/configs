@@ -152,7 +152,19 @@ function rninit {
 
 # logbook function - https://routley.io/tech/2017/11/23/logbook.html
 function lb() {
-    vim ~/logbook/$(date '+%Y-%m-%d').md
+    today=$(date '+%Y-%m-%d')
+    logbook_name=$today.md
+    logbook_path=~/logbook/$logbook_name
+    if [ ! -f $logbook_path ]; then
+        echo -e "# Logbook $today\n\n" > $logbook_path
+        echo -e "## How to use it?\n" >> $logbook_path
+        echo -e "1. Consider the problem you’re attempting to solve" >> $logbook_path
+        echo -e "2. Describe your method for solving it" >> $logbook_path
+        echo -e "3. Describe the process of carrying out the method" >> $logbook_path
+        echo -e "4. Record what happened, and ask how it could be improved" >> $logbook_path
+        echo -e "\n\n" >> $logbook_path
+    fi
+    vim $logbook_path
 }
 
 # Print great advice

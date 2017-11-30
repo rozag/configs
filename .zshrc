@@ -164,9 +164,7 @@ function lb() {
         echo -e "4. Record what happened, and ask how it could be improved" >> $logbook_path
         echo -e "\n\n" >> $logbook_path
     fi
-    if [ "$1" = "vim" ]; then
-        vim $logbook_path
-    fi
+    macdown $logbook_path
 }
 
 # Print great advice

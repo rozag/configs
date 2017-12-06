@@ -85,6 +85,8 @@ alias dx='$ANDROID_HOME/build-tools/25.0.2/dx'
 alias dex2jar='$AHACK/dex2jar-2.0/d2j-dex2jar.sh'
 alias backdoor-apk='$AHACK/backdoor-apk/backdoor-apk.sh'
 
+alias joe="/Users/alexey/workspace/joe/build/joe-darwin"
+
 # Pull database from device
 function pulldevdb {
    adb exec-out run-as $1 cat databases/$2 > $2
@@ -148,23 +150,6 @@ function rninit {
     ls -la
     unset $rndir
     unset $rnname
-}
-
-# logbook function - https://routley.io/tech/2017/11/23/logbook.html
-function lb() {
-    today=$(date '+%Y-%m-%d')
-    logbook_name=$today.md
-    logbook_path=~/logbook/$logbook_name
-    if [ ! -f $logbook_path ]; then
-        echo -e "# Logbook $today\n\n" > $logbook_path
-        echo -e "## How to use it?\n" >> $logbook_path
-        echo -e "1. Consider the problem you’re attempting to solve" >> $logbook_path
-        echo -e "2. Describe your method for solving it" >> $logbook_path
-        echo -e "3. Describe the process of carrying out the method" >> $logbook_path
-        echo -e "4. Record what happened, and ask how it could be improved" >> $logbook_path
-        echo -e "\n\n" >> $logbook_path
-    fi
-    macdown $logbook_path
 }
 
 # Print great advice

@@ -6,6 +6,7 @@ export ZSH_THEME="agnoster"
 
 export PATH=$PATH:$ME/anaconda3/bin
 export PATH=$PATH:$ME/Library/Android/sdk/platform-tools
+export PATH=$PATH:$ME/Library/Android/sdk/tools
 
 # Go related stuff
 export GOPATH=$HOME/workspace/go

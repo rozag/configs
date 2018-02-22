@@ -25,7 +25,7 @@
 
     // JavaScript Standard Style plugin
     "javascript.validate.enable": false,
-    "standard.autoFixOnSave": false,
+    "standard.autoFixOnSave": true,
 
     // Move tabs close button to left
     "workbench.editor.tabCloseButton": "left",

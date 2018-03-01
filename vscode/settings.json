@@ -9,9 +9,12 @@
     "workbench.colorTheme": "Monokai",
 
     // Font stuff
-    "editor.fontSize": 10,
+    "editor.fontSize": 9,
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
+    "markdown.preview.fontSize": 10,
+    "terminal.integrated.fontSize": 9,
+    "terminal.integrated.fontFamily": "Fira Code",
 
     // vscode-icons plugin stuff
     "workbench.iconTheme": "vscode-icons", 

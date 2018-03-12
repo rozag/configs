@@ -12,7 +12,7 @@
     "editor.fontSize": 9,
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
-    "markdown.preview.fontSize": 10,
+    "markdown.preview.fontSize": 9,
     "terminal.integrated.fontSize": 9,
     "terminal.integrated.fontFamily": "Fira Code",
 

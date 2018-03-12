@@ -4,9 +4,11 @@ export LANG=en_US.UTF-8
 export EDITOR="vim"
 export ZSH_THEME="agnoster"
 
+export ANDROID_HOME=$ME/Library/Android/sdk
+
 export PATH=$PATH:$ME/anaconda3/bin
-export PATH=$PATH:$ME/Library/Android/sdk/platform-tools
-export PATH=$PATH:$ME/Library/Android/sdk/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/sdk/tools
 
 # Go related stuff
 export GOPATH=$HOME/workspace/go

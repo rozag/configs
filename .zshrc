@@ -52,6 +52,7 @@ alias gd="git icdiff"
 alias gdf="git diff-tree --no-commit-id --name-only -r"
 alias gcob="git checkout -b"
 alias glb="git shortlog -sn"
+alias lla="ls -lha"
 
 # ctags macOS fix
 alias ctags="`brew --prefix`/bin/ctags"

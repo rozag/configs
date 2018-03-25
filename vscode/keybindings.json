@@ -9,10 +9,6 @@
         "command": "-workbench.action.quickOpen"
     },
     {
-        "key": "cmd+l",
-        "command": "standard.executeAutofix"
-    },
-    {
         "key": "alt+6",
         "command": "workbench.actions.view.problems"
     },
@@ -77,5 +73,9 @@
         "key": "shift+cmd+space",
         "command": "-editor.action.triggerParameterHints",
         "when": "editorHasSignatureHelpProvider && editorTextFocus"
+    },
+    {
+        "key": "cmd+l",
+        "command": "editor.action.reindentlines"
     }
 ]

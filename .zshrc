@@ -2,7 +2,7 @@ export ME=/Users/alexey
 export ZSH=$ME/.oh-my-zsh
 export LANG=en_US.UTF-8
 export EDITOR="vim"
-export ZSH_THEME="agnoster"
+export ZSH_THEME="gnzh"
 
 export ANDROID_HOME=$ME/Library/Android/sdk
 

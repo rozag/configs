@@ -35,5 +35,6 @@
     "editor.wordWrap": "on",
     "extensions.ignoreRecommendations": false,
     "window.zoomLevel": 0,
-    "workbench.colorTheme": "Monokai"
+    "workbench.colorTheme": "Monokai",
+    "explorer.confirmDelete": false
 }

@@ -4,9 +4,6 @@
 
     // What to open on startup
     "workbench.startupEditor": "newUntitledFile",
-
-    // Font stuff
-    "editor.fontSize": 9,
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
     "markdown.preview.fontSize": 9,
@@ -19,9 +16,6 @@
     // Disable git, I use external tool
     "git.enabled": false,
     "workbench.activityBar.visible": true,
-
-    // Show some of whitespaces
-    "editor.renderWhitespace": "boundary",
 
     // JavaScript Standard Style plugin
     "javascript.validate.enable": false,
@@ -36,5 +30,41 @@
     "extensions.ignoreRecommendations": false,
     "window.zoomLevel": 0,
     "workbench.colorTheme": "Monokai",
-    "explorer.confirmDelete": false
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "editor.tabSize": 2,
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+
+    // TODO Highlight plugin
+    "todohighlight.defaultStyle": {
+            "fontStyle": "bold"
+    },
+    "todohighlight.keywords": [
+        {
+            "text": "TODO:",
+            "color": "#ffffff",
+            "backgroundColor": "#006466",
+            "overviewRulerColor": "#006466",
+            "isWholeLine": true
+        },
+        {
+            "text": "FIXME:",
+            "color": "#ffffff",
+            "backgroundColor": "#91008F",
+            "overviewRulerColor": "#91008F",
+            "isWholeLine": true
+        }
+    ],
+    "todohighlight.include": [
+        "**/*.js",
+        "**/*.jsx",
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.html",
+        "**/*.php",
+        "**/*.css",
+        "**/*.scss",
+        "**/*.go",
+    ]
 }

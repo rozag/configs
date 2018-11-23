@@ -93,8 +93,6 @@ alias dx='$ANDROID_HOME/build-tools/25.0.2/dx'
 alias dex2jar='$AHACK/dex2jar-2.0/d2j-dex2jar.sh'
 alias backdoor-apk='$AHACK/backdoor-apk/backdoor-apk.sh'
 
-alias joe="/Users/alexey/workspace/joe/build/joe-darwin"
-
 # Pull database from device
 function pulldevdb {
    adb exec-out run-as $1 cat databases/$2 > $2

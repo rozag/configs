@@ -23,7 +23,7 @@
 
     // Move tabs close button to left
     "workbench.editor.tabCloseButton": "left",
-    "editor.minimap.enabled": false,
+    "editor.minimap.enabled": true,
 
     // Word wrapping
     "editor.wordWrap": "on",
@@ -66,5 +66,7 @@
         "**/*.css",
         "**/*.scss",
         "**/*.go",
-    ]
+    ],
+    "editor.minimap.side": "left",
+    "editor.minimap.maxColumn": 160
 }

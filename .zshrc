@@ -27,6 +27,9 @@ export PATH="/Users/alexey/configs/script:$PATH"
 # PostgreSQL - Postgress.app
 export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 
+# Git without XCode
+export PATH="/usr/local/Cellar/git/2.20.1/bin:$PATH"
+
 # Gradle completion
 fpath=($HOME/.zsh/gradle-completion $fpath)
 

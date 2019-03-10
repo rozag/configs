@@ -23,7 +23,7 @@
 
     // Move tabs close button to left
     "workbench.editor.tabCloseButton": "left",
-    "editor.minimap.enabled": true,
+    "editor.minimap.enabled": false,
 
     // Word wrapping
     "editor.wordWrap": "on",

@@ -30,6 +30,9 @@ export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 # Git without XCode
 export PATH="/usr/local/Cellar/git/2.20.1/bin:$PATH"
 
+# scrcpy - stream android device screen
+export PATH="/usr/local/Cellar/scrcpy/1.8/bin:$PATH"
+
 # Gradle completion
 fpath=($HOME/.zsh/gradle-completion $fpath)
 
@@ -87,7 +90,7 @@ alias wo='w --offline'
 export AHACK=$ME/Library/Android/hack
 export ANDROID_HOME=$ME/Library/Android/sdk
 
-alias apktool='java -jar $AHACK/apktool_2.2.2.jar'
+alias apktool='java -jar $AHACK/apktool_2.4.0.jar'
 alias jadx-gui='$AHACK/jadx-0.6.1/bin/jadx-gui'
 alias baksmali='java -jar $AHACK/baksmali-2.1.3.jar'
 alias sign='java -jar $AHACK/sign.jar'

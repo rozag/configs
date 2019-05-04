@@ -6,15 +6,11 @@
     "workbench.startupEditor": "newUntitledFile",
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
-    "markdown.preview.fontSize": 9,
-    "terminal.integrated.fontSize": 9,
+    "markdown.preview.fontSize": 12,
     "terminal.integrated.fontFamily": "Fira Code",
 
     // vscode-icons plugin stuff
-    "workbench.iconTheme": "vscode-icons", 
-
-    // Disable git, I use external tool
-    "git.enabled": false,
+    "workbench.iconTheme": "vscode-icons",
     "workbench.activityBar.visible": true,
 
     // JavaScript Standard Style plugin
@@ -68,5 +64,9 @@
         "**/*.go",
     ],
     "editor.minimap.side": "left",
-    "editor.minimap.maxColumn": 160
+    "editor.minimap.maxColumn": 160,
+    "standard.enable": false,
+    "githubPullRequests.showInSCM": true,
+    "githubPullRequests.telemetry.enabled": false,
+    "diffEditor.renderSideBySide": false
 }

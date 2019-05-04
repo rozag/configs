@@ -106,7 +106,7 @@
 
 
 ;; ==============================
-k;; Use modeline visual bell
+;; Use modeline visual bell
 ;; ==============================
 (setq ring-bell-function
       (lambda ()
@@ -127,3 +127,19 @@ k;; Use modeline visual bell
 ;; Restore latest session
 ;; ==============================
 (desktop-save-mode t)
+
+
+;; ==============================
+;; Always follow the symlink
+;; ==============================
+(setq vc-follow-symlinks t)
+
+;; ==============================
+;; Fix titlebar text appearance
+;; ==============================
+;; https://github.com/d12frosted/homebrew-emacs-plus/blob/master/Formula/emacs-plus.rb#L98
+;; https://github.com/d12frosted/homebrew-emacs-plus/issues/55
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Properties-in-Mode.html#Properties-in-Mode
+(when (memq window-system '(mac ns))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark))
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))

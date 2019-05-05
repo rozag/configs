@@ -143,3 +143,13 @@
 (when (memq window-system '(mac ns))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))
+
+
+;; ==============================
+;; Suggestions for commands
+;; ==============================
+(add-to-list 'load-path "~/configs/emacs/emacs-which-key/")
+(require 'which-key)
+(which-key-mode)
+(which-key-setup-side-window-bottom)
+

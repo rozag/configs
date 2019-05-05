@@ -52,7 +52,7 @@
      ("XXX" . "#dc752f")
      ("XXXX" . "#dc752f")
      ("???" . "#dc752f"))))
- '(package-selected-packages (quote (spacemacs-theme ##)))
+ '(package-selected-packages (quote (evil spacemacs-theme ##)))
  '(pdf-view-midnight-colors (quote ("#b2b2b2" . "#292b2e")))
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -152,4 +152,11 @@
 (require 'which-key)
 (which-key-mode)
 (which-key-setup-side-window-bottom)
+
+
+;; ==============================
+;; VIM is here :)
+;; ==============================
+(require 'evil)
+(evil-mode t)
 

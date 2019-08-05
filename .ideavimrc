@@ -6,3 +6,9 @@ set surround
 
 " Disable relative line numbers cause it lags
 set norelativenumber
+
+" Enable fancy line join: https://github.com/JetBrains/ideavim/blob/master/doc/ideajoin-examples.md
+set ideajoin
+
+" Fancy clipboard
+set clipboard+=ideaput

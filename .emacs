@@ -52,7 +52,7 @@
      ("XXX" . "#dc752f")
      ("XXXX" . "#dc752f")
      ("???" . "#dc752f"))))
- '(package-selected-packages (quote (evil spacemacs-theme ##)))
+ '(package-selected-packages (quote (projectile neotree evil spacemacs-theme ##)))
  '(pdf-view-midnight-colors (quote ("#b2b2b2" . "#292b2e")))
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -159,4 +159,43 @@
 ;; ==============================
 (require 'evil)
 (evil-mode t)
+
+
+;; ==============================
+;; Projects support
+;; ==============================
+(projectile-mode t)
+(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+(setq projectile-project-search-path '("~/workspace/"))
+
+
+;; ==============================
+;; File tree
+;; ==============================
+(require 'neotree)
+(global-set-key (kbd "M-1") 'neotree-toggle)
+(setq neo-theme 'arrows)
+(setq-default neo-show-hidden-files t)
+(setq neo-smart-open t)
+(setq neo-window-width 40)
+
+
+;; ==============================
+;; Fix evil + neotree
+;; ==============================
+(evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
+(evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-quick-look)
+(evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
+(evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
+(evil-define-key 'normal neotree-mode-map (kbd "g") 'neotree-refresh)
+(evil-define-key 'normal neotree-mode-map (kbd "n") 'neotree-next-line)
+(evil-define-key 'normal neotree-mode-cmap (kbd "p") 'neotree-previous-line)
+(evil-define-key 'normal neotree-mode-map (kbd "A") 'neotree-stretch-toggle)
+(evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle)
+
+
+;; ==============================
+;; projectile + neotree = <3
+;; ==============================
+(setq projectile-switch-project-action 'neotree-projectile-action)
 

@@ -33,6 +33,10 @@ export PATH="/usr/local/Cellar/git/2.20.1/bin:$PATH"
 # scrcpy - stream android device screen
 export PATH="/usr/local/Cellar/scrcpy/1.8/bin:$PATH"
 
+# libxml2
+export PATH="/usr/local/opt/libxml2/bin:$PATH"
+export PKG_CONFIG_PATH="/usr/local/opt/libxml2/lib/pkgconfig"
+
 # Gradle completion
 fpath=($HOME/.zsh/gradle-completion $fpath)
 
@@ -59,7 +63,9 @@ alias gd="git icdiff"
 alias gdf="git diff-tree --no-commit-id --name-only -r"
 alias gcob="git checkout -b"
 alias glb="git shortlog -sn"
-alias lla="ls -lha"
+alias ls="gls --color -hF --group-directories-first"
+alias ll="ls -l"
+alias lla="ll -a"
 
 # ctags macOS fix
 alias ctags="`brew --prefix`/bin/ctags"

@@ -105,9 +105,19 @@ alias dx='$ANDROID_HOME/build-tools/25.0.2/dx'
 alias dex2jar='$AHACK/dex2jar-2.0/d2j-dex2jar.sh'
 alias backdoor-apk='$AHACK/backdoor-apk/backdoor-apk.sh'
 
+alias checkstyle='java -jar ~/Library/Android/checkstyle-8.25-all.jar'
+
 # Pull database from device
 function pulldevdb {
-   adb exec-out run-as $1 cat databases/$2 > $2
+    adb exec-out run-as $1 cat databases/$2 > $2
+}
+
+# Record and pull video from device
+function adb-record-vid {
+    adb shell screenrecord /sdcard/$1.mp4
+}
+function adb-pull-vid {
+    adb pull /sdcard/$1.mp4 && adb shell rm /sdcard/$1.mp4
 }
 
 ### BEGIN UNALIAS GIT PLUGIN ###

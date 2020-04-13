@@ -63,7 +63,7 @@ alias gd="git icdiff"
 alias gdf="git diff-tree --no-commit-id --name-only -r"
 alias gcob="git checkout -b"
 alias glb="git shortlog -sn"
-alias ls="gls --color -hF --group-directories-first"
+alias ls="/usr/local/opt/coreutils/bin/gls --color -hF --group-directories-first"
 alias ll="ls -l"
 alias lla="ll -a"
 

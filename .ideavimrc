@@ -4,8 +4,8 @@ source ~/.vimrc
 " Enable vim-surround support
 set surround
 
-" Disable relative line numbers cause it lags
-set norelativenumber
+" Enable relative line numbers
+set relativenumber
 
 " Enable fancy line join: https://github.com/JetBrains/ideavim/blob/master/doc/ideajoin-examples.md
 set ideajoin

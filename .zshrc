@@ -120,6 +120,10 @@ function adb-pull-vid {
     adb pull /sdcard/$1.mp4 && adb shell rm /sdcard/$1.mp4
 }
 
+# Record and pull video aliases
+alias recvid='rm video.mp4 video.mp4.zip; adb-record-vid video'
+alias pullvid='adb-pull-vid video && zip video.mp4.zip video.mp4'
+
 ### BEGIN UNALIAS GIT PLUGIN ###
 unalias glg
 unalias glgg

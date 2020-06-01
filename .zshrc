@@ -1,4 +1,4 @@
-export ME=/Users/alexey
+export ME=/Users/rozag
 export ZSH=$ME/.oh-my-zsh
 export LANG=en_US.UTF-8
 export EDITOR="vim"
@@ -15,14 +15,14 @@ export GOPATH=$HOME/workspace/go
 export PATH=$PATH:$(go env GOPATH)/bin
 
 # Python related stuff
-export PATH="/Users/alexey/anaconda3/bin:$PATH"
+export PATH="$ME/anaconda3/bin:$PATH"
 export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
 export PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
 export PATH="/usr/local/lib/python3.6/site-packages:$PATH"
 export PATH="/usr/local/bin:$PATH"
 
 # Scripts
-export PATH="/Users/alexey/configs/script:$PATH"
+export PATH="$ME/configs/script:$PATH"
 
 # PostgreSQL - Postgress.app
 export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
@@ -55,7 +55,7 @@ alias advice="advice | cowsay"
 alias :q="exit"
 alias tarcd='tar -czf "../${PWD##*/}.tar.gz" .'
 alias wtr='curl wttr.in/moscow'
-alias kakava='python3 /Users/alexey/workspace/kakava/kakava'
+alias kakava='python3 $ME/workspace/kakava/kakava'
 alias v='vim'
 alias wuzz='"$GOPATH/bin/wuzz"'
 alias gmnf="git merge --no-ff"

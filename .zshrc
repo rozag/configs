@@ -124,6 +124,16 @@ function adb-pull-vid {
 alias recvid='rm video.mp4 video.mp4.zip; adb-record-vid video'
 alias pullvid='adb-pull-vid video && zip video.mp4.zip video.mp4'
 
+# Capture and pull a screenshot from a device
+function adbscrn {
+    __scrnname=device-scrn-$(date +'%Y-%m-%d-%H-%M-%S').png
+    __scrnpath=/sdcard/$__scrnname
+    adb shell screencap -p $__scrnpath
+    adb pull $__scrnpath
+    adb shell rm $__scrnpath
+    mv $__scrnname $ME/Pictures/device-screenshots/
+}
+
 ### BEGIN UNALIAS GIT PLUGIN ###
 unalias glg
 unalias glgg

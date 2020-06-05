@@ -161,28 +161,9 @@ compctl -K _completemarks unmark
 alias jm="jump"
 ### END MARKS ###
 
-# Short name to react-native init blah-blah...
-function rninit {
-    if [ -z ${rndir+x} ]; then 
-        echo "rndir is unset"; 
-    else 
-        echo "rndir is set to '$rndir'"; 
-    fi
-    if [ -z ${rnname+x} ]; then 
-        echo "rnname is unset"; 
-    else 
-        echo "rnname is set to '$rnname'"; 
-    fi
-    md $rndir
-    cd $rndir
-    react-native init $rnname
-    mv $rnname/* ../$rndir
-    mv $rnname/.* ../$rndir
-    rm -r $rnname
-    ls -la
-    unset $rndir
-    unset $rnname
-}
+# Use C-n and C-p to cycle through history
+bindkey "^p" history-beginning-search-backward
+bindkey "^n" history-beginning-search-forward
 
 # Print great advice
 advice

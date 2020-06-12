@@ -105,7 +105,7 @@ alias dx='$ANDROID_HOME/build-tools/25.0.2/dx'
 alias dex2jar='$AHACK/dex2jar-2.0/d2j-dex2jar.sh'
 alias backdoor-apk='$AHACK/backdoor-apk/backdoor-apk.sh'
 
-alias checkstyle='java -jar ~/Library/Android/checkstyle-8.31-all.jar'
+alias checkstyle='java -jar ~/Library/Android/checkstyle-8.33-all.jar'
 
 # Pull database from device
 function pulldevdb {

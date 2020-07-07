@@ -175,5 +175,11 @@ alias jm="jump"
 bindkey "^p" history-beginning-search-backward
 bindkey "^n" history-beginning-search-forward
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$ME/Library/google-cloud-sdk/path.zsh.inc" ]; then . "$ME/Library/google-cloud-sdk/path.zsh.inc"; fi
+# The next line enables shell command completion for gcloud.
+if [ -f "$ME/Library/google-cloud-sdk/completion.zsh.inc" ]; then . "$ME/Library/google-cloud-sdk/completion.zsh.inc"; fi
+
 # Print great advice
 advice
+

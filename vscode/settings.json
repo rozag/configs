@@ -68,5 +68,6 @@
     "standard.enable": false,
     "githubPullRequests.showInSCM": true,
     "githubPullRequests.telemetry.enabled": false,
-    "diffEditor.renderSideBySide": false
+    "diffEditor.renderSideBySide": false,
+    "workbench.editorAssociations": []
 }

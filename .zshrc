@@ -14,11 +14,6 @@ export PATH=$PATH:$ANDROID_HOME/sdk/tools
 export GOPATH=$HOME/workspace/go
 export PATH=$PATH:$(go env GOPATH)/bin
 
-# Python related stuff
-export PATH="$ME/anaconda3/bin:$PATH"
-export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
-export PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
-export PATH="/usr/local/lib/python3.6/site-packages:$PATH"
 export PATH="/usr/local/bin:$PATH"
 
 # Scripts
@@ -42,6 +37,9 @@ fpath=($HOME/.zsh/gradle-completion $fpath)
 
 # Android Device Monitor stuff
 export ANDROID_HVPROTO=ddm
+
+# gcloud SDK
+export CLOUDSDK_PYTHON=/usr/local/Cellar/python@3.8/3.8.7_2/bin/python3.8
 
 plugins=(git)
 

@@ -4,7 +4,7 @@
 
     // What to open on startup
     "workbench.startupEditor": "newUntitledFile",
-    "editor.fontFamily": "Jetbrains Mono",
+    "editor.fontFamily": "JetBrains Mono",
     "editor.fontLigatures": true,
     "markdown.preview.fontSize": 12,
     "terminal.integrated.fontFamily": "Fira Code",
@@ -28,7 +28,6 @@
     "workbench.colorTheme": "Monokai",
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
-    "editor.tabSize": 2,
     "telemetry.enableTelemetry": false,
     "telemetry.enableCrashReporter": false,
 
@@ -69,5 +68,6 @@
     "githubPullRequests.showInSCM": true,
     "githubPullRequests.telemetry.enabled": false,
     "diffEditor.renderSideBySide": false,
-    "workbench.editorAssociations": []
+    "workbench.editorAssociations": [],
+    "editor.fontSize": 13
 }

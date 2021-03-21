@@ -1,28 +1,3 @@
-;; ==============================
-;; Use Melpa repo packages
-;; ==============================
-(require 'package)
-(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-                    (not (gnutls-available-p))))
-       (proto (if no-ssl "http" "https")))
-  (when no-ssl
-    (warn "\
-      Your version of Emacs does not support SSL connections,
-      which is unsafe because it allows man-in-the-middle attacks.
-      There are two things you can do about this warning:
-      1. Install an Emacs version that does support SSL and be safe.
-      2. Remove this warning from your init file so you won't see it again."))
-  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
-  (when (< emacs-major-version 24)
-    ;; For important compatibility libraries like cl-lib
-    (add-to-list 'package-archives
-		 (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
-(package-initialize)
-
-
-;; ==============================
-;; Stuff set by Custom
-;; ==============================
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -30,30 +5,18 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
    ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
- '(custom-enabled-themes (quote (spacemacs-dark)))
+ '(custom-enabled-themes '(spacemacs-dark))
  '(custom-safe-themes
-   (quote
-    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default)))
+   '("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default))
  '(hl-todo-keyword-faces
-   (quote
-    (("TODO" . "#dc752f")
-     ("NEXT" . "#dc752f")
-     ("THEM" . "#2d9574")
-     ("PROG" . "#4f97d7")
-     ("OKAY" . "#4f97d7")
-     ("DONT" . "#f2241f")
-     ("FAIL" . "#f2241f")
-     ("DONE" . "#86dc2f")
-     ("NOTE" . "#b1951d")
-     ("KLUDGE" . "#b1951d")
+   '(("TODO" . "#dc752f")
      ("HACK" . "#b1951d")
      ("TEMP" . "#b1951d")
      ("FIXME" . "#dc752f")
-     ("XXX" . "#dc752f")
-     ("XXXX" . "#dc752f")
-     ("???" . "#dc752f"))))
- '(package-selected-packages (quote (projectile neotree evil spacemacs-theme ##)))
- '(pdf-view-midnight-colors (quote ("#b2b2b2" . "#292b2e")))
+     ("???" . "#dc752f")))
+ '(package-selected-packages
+   '(kotlin-mode groovy-mode gradle-mode yaml-mode which-key spacemacs-theme neotree projectile use-package helm evil-visual-mark-mode))
+ '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -64,45 +27,155 @@
 
 
 ;; ==============================
+;; Initial package stuff
+;; ==============================
+(require 'package)
+
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
+
+(setq package-enable-at-startup nil)
+(package-initialize)
+
+
+;; ==============================
+;; use-package
+;; ==============================
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(eval-when-compile
+  (require 'use-package))
+
+
+;; ==============================
+;; Packages themselves
+;; ==============================
+(use-package helm
+  :ensure t
+  :config
+    (setq
+      helm-quick-update t
+      helm-idle-delay 0.01
+      helm-split-window-default-side 'other
+      helm-split-window-in-side-p t
+      helm-move-to-line-cycle-in-source t
+      helm-autoresize-max-height 0
+      helm-autoresize-min-height 20)
+    (helm-autoresize-mode t)
+    (helm-mode t))
+
+(use-package evil
+  :ensure t
+  :init
+    (setq evil-want-C-u-scroll t)
+  :config
+    (evil-mode t))
+
+(use-package projectile
+  :ensure t
+  :init
+    (projectile-mode t)
+  :config
+    (setq projectile-project-search-path '("~/workspace/"))
+    (setq projectile-switch-project-action 'neotree-projectile-action)
+  :bind
+    (:map projectile-mode-map
+      ("s-p" . projectile-command-map))
+      ("C-c p" . projectile-command-map))
+
+(use-package neotree
+  :ensure t
+  :config
+    (setq neo-theme 'arrows)
+    (setq-default neo-show-hidden-files t)
+    (setq neo-smart-open t)
+    (setq neo-window-width 40)
+    (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
+    (evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-quick-look)
+    (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
+    (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
+    (evil-define-key 'normal neotree-mode-map (kbd "g") 'neotree-refresh)
+    (evil-define-key 'normal neotree-mode-map (kbd "n") 'neotree-next-line)
+    (evil-define-key 'normal neotree-mode-cmap (kbd "p") 'neotree-previous-line)
+    (evil-define-key 'normal neotree-mode-map (kbd "A") 'neotree-stretch-toggle)
+    (evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle)
+  :bind
+    ("M-1" . neotree-toggle))
+
+(use-package spacemacs-common
+  :ensure spacemacs-theme
+  :config (load-theme 'spacemacs-dark t))
+
+(use-package which-key
+  :ensure t
+  :config
+    (setq which-key-show-early-on-C-h t)
+    (setq which-key-idle-delay 0.05)
+    (which-key-mode)
+    (which-key-setup-side-window-bottom))
+
+(use-package yaml-mode
+  :ensure t
+  :config
+    (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+    (add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode)))
+
+(use-package kotlin-mode
+  :ensure t
+  :config
+    (add-to-list 'auto-mode-alist '("\\.kt\\'" . kotlin-mode))
+    (add-to-list 'auto-mode-alist '("\\.kts\\'" . kotlin-mode)))
+
+
+;; ==============================
 ;; Start emacs window maximized
 ;; ==============================
 (toggle-frame-maximized)
 
 
 ;; ==============================
-;; Set up font; enable ligatures
+;; Set up font
 ;; ==============================
 (when (window-system)
-  (set-frame-font "Fira Code 12" nil t))
-(let ((alist '((33 . ".\\(?:\\(?:==\\|!!\\)\\|[!=]\\)")
-               (35 . ".\\(?:###\\|##\\|_(\\|[#(?[_{]\\)")
-               (36 . ".\\(?:>\\)")
-               (37 . ".\\(?:\\(?:%%\\)\\|%\\)")
-               (38 . ".\\(?:\\(?:&&\\)\\|&\\)")
-               (42 . ".\\(?:\\(?:\\*\\*/\\)\\|\\(?:\\*[*/]\\)\\|[*/>]\\)")
-               (43 . ".\\(?:\\(?:\\+\\+\\)\\|[+>]\\)")
-               (45 . ".\\(?:\\(?:-[>-]\\|<<\\|>>\\)\\|[<>}~-]\\)")
-               (46 . ".\\(?:\\(?:\\.[.<]\\)\\|[.=-]\\)")
-               (47 . ".\\(?:\\(?:\\*\\*\\|//\\|==\\)\\|[*/=>]\\)")
-               (48 . ".\\(?:x[a-zA-Z]\\)")
-               (58 . ".\\(?:::\\|[:=]\\)")
-               (59 . ".\\(?:;;\\|;\\)")
-               (60 . ".\\(?:\\(?:!--\\)\\|\\(?:~~\\|->\\|\\$>\\|\\*>\\|\\+>\\|--\\|<[<=-]\\|=[<=>]\\||>\\)\\|[*$+~/<=>|-]\\)")
-               (61 . ".\\(?:\\(?:/=\\|:=\\|<<\\|=[=>]\\|>>\\)\\|[<=>~]\\)")
-               (62 . ".\\(?:\\(?:=>\\|>[=>-]\\)\\|[=>-]\\)")
-               (63 . ".\\(?:\\(\\?\\?\\)\\|[:=?]\\)")
-               (91 . ".\\(?:]\\)")
-               (92 . ".\\(?:\\(?:\\\\\\\\\\)\\|\\\\\\)")
-               (94 . ".\\(?:=\\)")
-               (119 . ".\\(?:ww\\)")
-               (123 . ".\\(?:-\\)")
-               (124 . ".\\(?:\\(?:|[=|]\\)\\|[=>|]\\)")
-               (126 . ".\\(?:~>\\|~~\\|[>=@~-]\\)")
-               )
-             ))
-  (dolist (char-regexp alist)
-    (set-char-table-range composition-function-table (car char-regexp)
-                          `([,(cdr char-regexp) 0 font-shape-gstring]))))
+  (set-frame-font "JetBrains Mono 13" nil t))
+(setq-default line-spacing 0.2)
+
+
+;; ==============================
+;; Enable ligatures
+;; ==============================
+(let ((ligatures `((?-  ,(regexp-opt '("-|" "-~" "---" "-<<" "-<" "--" "->" "->>" "-->")))
+                     (?/  ,(regexp-opt '("/**" "/*" "///" "/=" "/==" "/>" "//")))
+                     (?*  ,(regexp-opt '("*>" "***" "*/")))
+                     (?<  ,(regexp-opt '("<-" "<<-" "<=>" "<=" "<|" "<||" "<|||" "<|>" "<:" "<>" "<-<"
+                                           "<<<" "<==" "<<=" "<=<" "<==>" "<-|" "<<" "<~>" "<=|" "<~~" "<~"
+                                           "<$>" "<$" "<+>" "<+" "</>" "</" "<*" "<*>" "<->" "<!--")))
+                     (?:  ,(regexp-opt '(":>" ":<" ":::" "::" ":?" ":?>" ":=" "::=")))
+                     (?=  ,(regexp-opt '("=>>" "==>" "=/=" "=!=" "=>" "===" "=:=" "==")))
+                     (?!  ,(regexp-opt '("!==" "!!" "!=")))
+                     (?>  ,(regexp-opt '(">]" ">:" ">>-" ">>=" ">=>" ">>>" ">-" ">=")))
+                     (?&  ,(regexp-opt '("&&&" "&&")))
+                     (?|  ,(regexp-opt '("|||>" "||>" "|>" "|]" "|}" "|=>" "|->" "|=" "||-" "|-" "||=" "||")))
+                     (?.  ,(regexp-opt '(".." ".?" ".=" ".-" "..<" "...")))
+                     (?+  ,(regexp-opt '("+++" "+>" "++")))
+                     (?\[ ,(regexp-opt '("[||]" "[<" "[|")))
+                     (?\{ ,(regexp-opt '("{|")))
+                     (?\? ,(regexp-opt '("??" "?." "?=" "?:")))
+                     (?#  ,(regexp-opt '("####" "###" "#[" "#{" "#=" "#!" "#:" "#_(" "#_" "#?" "#(" "##")))
+                     (?\; ,(regexp-opt '(";;")))
+                     (?_  ,(regexp-opt '("_|_" "__")))
+                     (?\\ ,(regexp-opt '("\\" "\\/")))
+                     (?~  ,(regexp-opt '("~~" "~~>" "~>" "~=" "~-" "~@")))
+                     (?$  ,(regexp-opt '("$>")))
+                     (?^  ,(regexp-opt '("^=")))
+                     (?\] ,(regexp-opt '("]#"))))))
+    (dolist (char-regexp ligatures)
+      (apply (lambda (char regexp) (set-char-table-range
+                                    composition-function-table
+                                    char `([,regexp 0 font-shape-gstring])))
+             char-regexp)))
 
 
 ;; ==============================
@@ -124,6 +197,12 @@
 
 
 ;; ==============================
+;; Highlight matching parentheses
+;; ==============================
+(show-paren-mode t)
+
+
+;; ==============================
 ;; Restore latest session
 ;; ==============================
 (desktop-save-mode t)
@@ -134,6 +213,7 @@
 ;; ==============================
 (setq vc-follow-symlinks t)
 
+
 ;; ==============================
 ;; Fix titlebar text appearance
 ;; ==============================
@@ -143,59 +223,4 @@
 (when (memq window-system '(mac ns))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))
-
-
-;; ==============================
-;; Suggestions for commands
-;; ==============================
-(add-to-list 'load-path "~/configs/emacs/emacs-which-key/")
-(require 'which-key)
-(which-key-mode)
-(which-key-setup-side-window-bottom)
-
-
-;; ==============================
-;; VIM is here :)
-;; ==============================
-(require 'evil)
-(evil-mode t)
-
-
-;; ==============================
-;; Projects support
-;; ==============================
-(projectile-mode t)
-(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-(setq projectile-project-search-path '("~/workspace/"))
-
-
-;; ==============================
-;; File tree
-;; ==============================
-(require 'neotree)
-(global-set-key (kbd "M-1") 'neotree-toggle)
-(setq neo-theme 'arrows)
-(setq-default neo-show-hidden-files t)
-(setq neo-smart-open t)
-(setq neo-window-width 40)
-
-
-;; ==============================
-;; Fix evil + neotree
-;; ==============================
-(evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
-(evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-quick-look)
-(evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
-(evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
-(evil-define-key 'normal neotree-mode-map (kbd "g") 'neotree-refresh)
-(evil-define-key 'normal neotree-mode-map (kbd "n") 'neotree-next-line)
-(evil-define-key 'normal neotree-mode-cmap (kbd "p") 'neotree-previous-line)
-(evil-define-key 'normal neotree-mode-map (kbd "A") 'neotree-stretch-toggle)
-(evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle)
-
-
-;; ==============================
-;; projectile + neotree = <3
-;; ==============================
-(setq projectile-switch-project-action 'neotree-projectile-action)
 

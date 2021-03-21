@@ -39,7 +39,7 @@ fpath=($HOME/.zsh/gradle-completion $fpath)
 export ANDROID_HVPROTO=ddm
 
 # gcloud SDK
-export CLOUDSDK_PYTHON=/usr/local/Cellar/python@3.8/3.8.7_2/bin/python3.8
+export CLOUDSDK_PYTHON=/usr/local/Cellar/python@3.8/3.8.8_1/bin/python3.8
 
 plugins=(git)
 
@@ -104,6 +104,9 @@ alias dex2jar='$AHACK/dex2jar-2.0/d2j-dex2jar.sh'
 alias backdoor-apk='$AHACK/backdoor-apk/backdoor-apk.sh'
 
 alias checkstyle='java -jar ~/Library/Android/checkstyle-8.36.2-all.jar'
+
+# Emacs
+alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
 
 # Pull database from device
 function pulldevdb {

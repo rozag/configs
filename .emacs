@@ -73,12 +73,17 @@
   :config
     (evil-mode t))
 
+(use-package evil-surround
+  :ensure t
+  :config
+    (global-evil-surround-mode t))
+
 (use-package projectile
   :ensure t
   :init
     (projectile-mode t)
   :config
-    (setq projectile-project-search-path '("~/workspace/"))
+    (setq projectile-project-search-path '("~/workspace"))
     (setq projectile-switch-project-action 'neotree-projectile-action)
   :bind
     (:map projectile-mode-map
@@ -128,11 +133,17 @@
     (add-to-list 'auto-mode-alist '("\\.kt\\'" . kotlin-mode))
     (add-to-list 'auto-mode-alist '("\\.kts\\'" . kotlin-mode)))
 
+(use-package org
+  :ensure t
+  :config
+    (setq org-todo-keywords
+      '((sequence "TODO" "WIP" "WAITING" "DONE"))))
+
 
 ;; ==============================
-;; Start emacs window maximized
+;; Use particular frame width, full height, align to the right
 ;; ==============================
-(toggle-frame-maximized)
+(setq default-frame-alist '((left . (- 0)) (width . 160) (fullscreen . fullheight)))
 
 
 ;; ==============================
@@ -203,12 +214,6 @@
 
 
 ;; ==============================
-;; Restore latest session
-;; ==============================
-(desktop-save-mode t)
-
-
-;; ==============================
 ;; Always follow the symlink
 ;; ==============================
 (setq vc-follow-symlinks t)
@@ -223,4 +228,28 @@
 (when (memq window-system '(mac ns))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t)))
+
+
+;; ==============================
+;; Restore latest session
+;; ==============================
+;; (desktop-save-mode t) ;; Disabled for now
+
+
+;; ==============================
+;; Disable welcome screen
+;; ==============================
+(setq inhibit-startup-screen t)
+
+
+;; ==============================
+;; Wrap long lines
+;; ==============================
+(global-visual-line-mode t)
+
+
+;; ==============================
+;; Open ~/.emacs on startup
+;; ==============================
+(find-file "~/.emacs")
 

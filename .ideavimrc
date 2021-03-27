@@ -4,8 +4,8 @@ source ~/.vimrc
 " Enable vim-surround support
 set surround
 
-" Enable relative line numbers
-set relativenumber
+" Disable relative line numbers
+set norelativenumber
 
 " Enable fancy line join: https://github.com/JetBrains/ideavim/blob/master/doc/ideajoin-examples.md
 set ideajoin

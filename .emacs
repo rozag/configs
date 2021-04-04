@@ -15,7 +15,7 @@
      ("FIXME" . "#dc752f")
      ("???" . "#dc752f")))
  '(package-selected-packages
-   '(kotlin-mode groovy-mode gradle-mode yaml-mode which-key spacemacs-theme neotree projectile use-package helm evil-visual-mark-mode))
+   '(org-bullets kotlin-mode groovy-mode gradle-mode yaml-mode which-key spacemacs-theme neotree projectile use-package helm evil-visual-mark-mode))
  '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -23,7 +23,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(org-date ((t (:foreground "#7590db" :underline nil)))))
 
 
 ;; ==============================
@@ -88,7 +88,7 @@
   :bind
     (:map projectile-mode-map
       ("s-p" . projectile-command-map))
-      ("C-c p" . projectile-command-map))
+    ("C-c p" . projectile-command-map))
 
 (use-package neotree
   :ensure t
@@ -136,14 +136,31 @@
 (use-package org
   :ensure t
   :config
-    (setq org-todo-keywords
-      '((sequence "TODO" "WIP" "WAITING" "DONE"))))
+    (setq org-todo-keywords '((sequence "TODO" "WIP" "DONE")))
+    (setq org-fontify-done-headline t)
+    (setq org-hide-leading-stars t)
+    (setq org-odd-levels-only t)
+    (setq org-ellipsis " ⤵")
+    (set-face-attribute 'org-done nil :strike-through t)
+    (set-face-attribute 'org-headline-done nil :strike-through t)
+  :bind
+    ("s-." . org-narrow-to-subtree)
+    ("s-," . widen)
+    ("s-r" . org-ctrl-c-star))
+
+
+(use-package org-bullets
+  :ensure t
+  :hook
+    (org-mode . org-bullets-mode)
+  :init
+    (setq org-bullets-bullet-list '("◉" "◉" "○" "►" "•" "•" "•" "•" "•" "•" "•")))
 
 
 ;; ==============================
 ;; Use particular frame width, full height, align to the right
 ;; ==============================
-(setq default-frame-alist '((left . (- 0)) (width . 160) (fullscreen . fullheight)))
+(setq default-frame-alist '((left . (- 0)) (width . 152) (fullscreen . fullheight)))
 
 
 ;; ==============================
@@ -152,6 +169,15 @@
 (when (window-system)
   (set-frame-font "JetBrains Mono 13" nil t))
 (setq-default line-spacing 0.2)
+
+
+;; ==============================
+;; Emoji: 🌚, 󠁿🚀, 🌝
+;; ==============================
+(set-fontset-font t 'symbol "Apple Color Emoji")
+(set-fontset-font t 'symbol "Noto Color Emoji" nil 'append)
+(set-fontset-font t 'symbol "Segoe UI Emoji" nil 'append)
+(set-fontset-font t 'symbol "Symbola" nil 'append)
 
 
 ;; ==============================
@@ -249,7 +275,14 @@
 
 
 ;; ==============================
-;; Open ~/.emacs on startup
+;; Highlight current line
+;; ==============================
+(global-hl-line-mode t)
+
+
+;; ==============================
+;; Open some files on startup
 ;; ==============================
 (find-file "~/.emacs")
+(find-file "~/org-files/planner.org")
 

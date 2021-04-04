@@ -108,6 +108,9 @@ alias checkstyle='java -jar ~/Library/Android/checkstyle-8.36.2-all.jar'
 # Emacs
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
 
+# ki (https://blog.jetbrains.com/kotlin/2021/04/ki-the-next-interactive-shell-for-kotlin/)
+alias ki='/usr/local/bin/ki/bin/ki.sh'
+
 # Pull database from device
 function pulldevdb {
     adb exec-out run-as $1 cat databases/$2 > $2

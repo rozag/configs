@@ -15,7 +15,7 @@
      ("FIXME" . "#dc752f")
      ("???" . "#dc752f")))
  '(package-selected-packages
-   '(org-bullets kotlin-mode groovy-mode gradle-mode yaml-mode which-key spacemacs-theme neotree projectile use-package helm evil-visual-mark-mode))
+   '(org-bullets kotlin-mode groovy-mode gradle-mode yaml-mode which-key spacemacs-theme neotree projectile use-package evil-visual-mark-mode))
  '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -31,9 +31,9 @@
 ;; ==============================
 (require 'package)
 
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
 
 (setq package-enable-at-startup nil)
 (package-initialize)
@@ -52,31 +52,42 @@
 ;; ==============================
 ;; Packages themselves
 ;; ==============================
-(use-package helm
-  :ensure t
-  :config
-    (setq
-      helm-quick-update t
-      helm-idle-delay 0.01
-      helm-split-window-default-side 'other
-      helm-split-window-in-side-p t
-      helm-move-to-line-cycle-in-source t
-      helm-autoresize-max-height 0
-      helm-autoresize-min-height 20)
-    (helm-autoresize-mode t)
-    (helm-mode t))
-
 (use-package evil
   :ensure t
   :init
     (setq evil-want-C-u-scroll t)
-  :config
-    (evil-mode t))
+  :init (evil-mode t))
 
 (use-package evil-surround
   :ensure t
-  :config
-    (global-evil-surround-mode t))
+  :init (global-evil-surround-mode t))
+
+(use-package ivy
+  :ensure t
+  :diminish
+  :bind (("C-c C-r" . ivy-resume)
+         ("C-x C-b" . ivy-switch-buffer-other-window))
+  :custom
+  (ivy-count-format "(%d/%d) ")
+  (ivy-use-virtual-buffers t)
+  :init (ivy-mode t))
+
+(use-package counsel
+  :ensure t
+  :init (counsel-mode t))
+
+(use-package counsel-projectile
+  :ensure t
+  :after projectile
+  :init (counsel-projectile-mode t))
+
+(use-package all-the-icons-ivy-rich
+  :ensure t
+  :init (all-the-icons-ivy-rich-mode t))
+
+(use-package ivy-rich
+  :ensure t
+  :init (ivy-rich-mode t))
 
 (use-package projectile
   :ensure t
@@ -93,7 +104,7 @@
 (use-package neotree
   :ensure t
   :config
-    (setq neo-theme 'arrows)
+    (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
     (setq-default neo-show-hidden-files t)
     (setq neo-smart-open t)
     (setq neo-window-width 40)
@@ -140,7 +151,7 @@
     (setq org-fontify-done-headline t)
     (setq org-hide-leading-stars t)
     (setq org-odd-levels-only t)
-    (setq org-ellipsis " ⤵")
+    (setq org-ellipsis " ⤵ ")
     (set-face-attribute 'org-done nil :strike-through t)
     (set-face-attribute 'org-headline-done nil :strike-through t)
   :bind
@@ -278,6 +289,24 @@
 ;; Highlight current line
 ;; ==============================
 (global-hl-line-mode t)
+
+
+;; ==============================
+;; Hide file icon from title bar
+;; ==============================
+(setq ns-use-proxy-icon nil)
+
+
+;; ==============================
+;; Set-up Emacs backup files
+;; ==============================
+(setq
+ backup-directory-alist `(("." . "~/.emacs-backup-files"))
+ backup-by-copying t
+ delete-old-versions t
+ kept-new-versions 10
+ kept-old-versions 10
+ version-control t)
 
 
 ;; ==============================

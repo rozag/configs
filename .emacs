@@ -55,8 +55,9 @@
 (use-package evil
   :ensure t
   :init
-    (setq evil-want-C-u-scroll t)
-  :init (evil-mode t))
+  (setq evil-want-C-u-scroll t)
+  (setq evil-respect-visual-line-mode t)
+  (evil-mode t))
 
 (use-package evil-surround
   :ensure t

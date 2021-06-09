@@ -14,6 +14,7 @@
      ("TEMP" . "#b1951d")
      ("FIXME" . "#dc752f")
      ("???" . "#dc752f")))
+ '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages
    '(org-bullets kotlin-mode groovy-mode gradle-mode yaml-mode which-key spacemacs-theme neotree projectile use-package evil-visual-mark-mode))
  '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))

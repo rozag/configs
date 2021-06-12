@@ -16,7 +16,7 @@
      ("???" . "#dc752f")))
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages
-   '(org-bullets kotlin-mode groovy-mode gradle-mode yaml-mode which-key spacemacs-theme neotree projectile use-package evil-visual-mark-mode))
+   '(py-autopep8 python-mode org-bullets kotlin-mode groovy-mode gradle-mode yaml-mode which-key spacemacs-theme neotree projectile use-package evil-visual-mark-mode))
  '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
  '(tool-bar-mode nil))
 (custom-set-faces
@@ -25,6 +25,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(org-date ((t (:foreground "#7590db" :underline nil)))))
+
+
+;; ==============================
+;; $PATH stuff
+;; ==============================
+(add-to-list 'exec-path "/usr/local/bin")
 
 
 ;; ==============================
@@ -154,6 +160,7 @@
     (setq org-hide-leading-stars t)
     (setq org-odd-levels-only t)
     (setq org-ellipsis " ⤵ ")
+    (setq org-startup-folded t)
     (set-face-attribute 'org-done nil :strike-through t)
     (set-face-attribute 'org-headline-done nil :strike-through t)
   :bind
@@ -161,13 +168,22 @@
     ("s-," . widen)
     ("s-r" . org-ctrl-c-star))
 
-
 (use-package org-bullets
   :ensure t
   :hook
     (org-mode . org-bullets-mode)
   :init
-    (setq org-bullets-bullet-list '("◉" "◉" "○" "►" "•" "•" "•" "•" "•" "•" "•")))
+    (setq org-bullets-bullet-list '("◉" "◉" "○" "►" "•" "•" "•" "•" "•" "•" "•" "•" "•" "•" "•" "•")))
+
+(use-package python-mode
+  :ensure t
+  :config
+    (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode)))
+
+(use-package py-autopep8
+  :ensure t
+  :init
+    (add-hook 'python-mode-hook 'py-autopep8-enable-on-save))
 
 
 ;; ==============================

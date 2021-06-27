@@ -16,8 +16,9 @@
      ("???" . "#dc752f")))
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages
-   '(py-autopep8 python-mode org-bullets kotlin-mode groovy-mode gradle-mode yaml-mode which-key spacemacs-theme neotree projectile use-package evil-visual-mark-mode))
+   '(flycheck elpy exec-path-from-shell py-autopep8 python-mode org-bullets kotlin-mode groovy-mode gradle-mode yaml-mode which-key spacemacs-theme neotree projectile use-package evil-visual-mark-mode))
  '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
+ '(python-shell-interpreter "python3")
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -25,12 +26,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(org-date ((t (:foreground "#7590db" :underline nil)))))
-
-
-;; ==============================
-;; $PATH stuff
-;; ==============================
-(add-to-list 'exec-path "/usr/local/bin")
 
 
 ;; ==============================
@@ -64,7 +59,14 @@
   :init
   (setq evil-want-C-u-scroll t)
   (setq evil-respect-visual-line-mode t)
-  (evil-mode t))
+  (evil-mode t)
+  :config
+  (evil-set-undo-system 'undo-tree))
+
+(use-package undo-tree
+  :ensure t
+  :init
+  (global-undo-tree-mode))
 
 (use-package evil-surround
   :ensure t
@@ -175,15 +177,32 @@
   :init
     (setq org-bullets-bullet-list '("◉" "◉" "○" "►" "•" "•" "•" "•" "•" "•" "•" "•" "•" "•" "•" "•")))
 
-(use-package python-mode
+(use-package exec-path-from-shell
   :ensure t
+  :if
+    (memq window-system '(mac ns x))
   :config
-    (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode)))
+    (exec-path-from-shell-initialize))
+
+(use-package elpy
+  :ensure t
+  :init
+    (elpy-enable)
+  :config
+    (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+    (setq elpy-shell-echo-output nil)
+    (setq elpy-rpc-python-command "python3")
+    (setq elpy-rpc-timeout 2))
 
 (use-package py-autopep8
   :ensure t
-  :init
-    (add-hook 'python-mode-hook 'py-autopep8-enable-on-save))
+  :hook
+    (elpy-mode . py-autopep8-enable-on-save))
+
+(use-package flycheck
+  :ensure t
+  :hook
+    (elpy-mode . flycheck-mode))
 
 
 ;; ==============================
@@ -212,36 +231,59 @@
 ;; ==============================
 ;; Enable ligatures
 ;; ==============================
-(let ((ligatures `((?-  ,(regexp-opt '("-|" "-~" "---" "-<<" "-<" "--" "->" "->>" "-->")))
-                     (?/  ,(regexp-opt '("/**" "/*" "///" "/=" "/==" "/>" "//")))
-                     (?*  ,(regexp-opt '("*>" "***" "*/")))
-                     (?<  ,(regexp-opt '("<-" "<<-" "<=>" "<=" "<|" "<||" "<|||" "<|>" "<:" "<>" "<-<"
-                                           "<<<" "<==" "<<=" "<=<" "<==>" "<-|" "<<" "<~>" "<=|" "<~~" "<~"
-                                           "<$>" "<$" "<+>" "<+" "</>" "</" "<*" "<*>" "<->" "<!--")))
-                     (?:  ,(regexp-opt '(":>" ":<" ":::" "::" ":?" ":?>" ":=" "::=")))
-                     (?=  ,(regexp-opt '("=>>" "==>" "=/=" "=!=" "=>" "===" "=:=" "==")))
-                     (?!  ,(regexp-opt '("!==" "!!" "!=")))
-                     (?>  ,(regexp-opt '(">]" ">:" ">>-" ">>=" ">=>" ">>>" ">-" ">=")))
-                     (?&  ,(regexp-opt '("&&&" "&&")))
-                     (?|  ,(regexp-opt '("|||>" "||>" "|>" "|]" "|}" "|=>" "|->" "|=" "||-" "|-" "||=" "||")))
-                     (?.  ,(regexp-opt '(".." ".?" ".=" ".-" "..<" "...")))
-                     (?+  ,(regexp-opt '("+++" "+>" "++")))
-                     (?\[ ,(regexp-opt '("[||]" "[<" "[|")))
-                     (?\{ ,(regexp-opt '("{|")))
-                     (?\? ,(regexp-opt '("??" "?." "?=" "?:")))
-                     (?#  ,(regexp-opt '("####" "###" "#[" "#{" "#=" "#!" "#:" "#_(" "#_" "#?" "#(" "##")))
-                     (?\; ,(regexp-opt '(";;")))
-                     (?_  ,(regexp-opt '("_|_" "__")))
-                     (?\\ ,(regexp-opt '("\\" "\\/")))
-                     (?~  ,(regexp-opt '("~~" "~~>" "~>" "~=" "~-" "~@")))
-                     (?$  ,(regexp-opt '("$>")))
-                     (?^  ,(regexp-opt '("^=")))
-                     (?\] ,(regexp-opt '("]#"))))))
-    (dolist (char-regexp ligatures)
-      (apply (lambda (char regexp) (set-char-table-range
-                                    composition-function-table
-                                    char `([,regexp 0 font-shape-gstring])))
-             char-regexp)))
+
+;; ==> Old attempt to make ligatures work, had to disable because sometimes it just freezes Emacs
+;; (let ((ligatures `((?-  ,(regexp-opt '("-|" "-~" "---" "-<<" "-<" "--" "->" "->>" "-->")))
+;;                      (?/  ,(regexp-opt '("/**" "/*" "///" "/=" "/==" "/>" "//")))
+;;                      (?*  ,(regexp-opt '("*>" "***" "*/")))
+;;                      (?<  ,(regexp-opt '("<-" "<<-" "<=>" "<=" "<|" "<||" "<|||" "<|>" "<:" "<>" "<-<"
+;;                                            "<<<" "<==" "<<=" "<=<" "<==>" "<-|" "<<" "<~>" "<=|" "<~~" "<~"
+;;                                            "<$>" "<$" "<+>" "<+" "</>" "</" "<*" "<*>" "<->" "<!--")))
+;;                      (?:  ,(regexp-opt '(":>" ":<" ":::" "::" ":?" ":?>" ":=" "::=")))
+;;                      (?=  ,(regexp-opt '("=>>" "==>" "=/=" "=!=" "=>" "===" "=:=" "==")))
+;;                      (?!  ,(regexp-opt '("!==" "!!" "!=")))
+;;                      (?>  ,(regexp-opt '(">]" ">:" ">>-" ">>=" ">=>" ">>>" ">-" ">=")))
+;;                      (?&  ,(regexp-opt '("&&&" "&&")))
+;;                      (?|  ,(regexp-opt '("|||>" "||>" "|>" "|]" "|}" "|=>" "|->" "|=" "||-" "|-" "||=" "||")))
+;;                      (?.  ,(regexp-opt '(".." ".?" ".=" ".-" "..<" "...")))
+;;                      (?+  ,(regexp-opt '("+++" "+>" "++")))
+;;                      (?\[ ,(regexp-opt '("[||]" "[<" "[|")))
+;;                      (?\{ ,(regexp-opt '("{|")))
+;;                      (?\? ,(regexp-opt '("??" "?." "?=" "?:")))
+;;                      (?#  ,(regexp-opt '("####" "###" "#[" "#{" "#=" "#!" "#:" "#_(" "#_" "#?" "#(" "##")))
+;;                      (?\; ,(regexp-opt '(";;")))
+;;                      (?_  ,(regexp-opt '("_|_" "__")))
+;;                      (?\\ ,(regexp-opt '("\\" "\\/")))
+;;                      (?~  ,(regexp-opt '("~~" "~~>" "~>" "~=" "~-" "~@")))
+;;                      (?$  ,(regexp-opt '("$>")))
+;;                      (?^  ,(regexp-opt '("^=")))
+;;                      (?\] ,(regexp-opt '("]#"))))))
+;;     (dolist (char-regexp ligatures)
+;;       (apply (lambda (char regexp) (set-char-table-range
+;;                                     composition-function-table
+;;                                     char `([,regexp 0 font-shape-gstring])))
+;;              char-regexp)))
+
+;; ==> 2nd attempt to make ligatures work. Looks much better, still freezes Emacs sometimes. 
+;; (use-package ligature
+;;   ;; TODO: get this package from MELPA when available
+;;   :load-path "~/workspace/ligature.el"
+;;   :config
+;;   ;; Enable all JetBrains Mono ligatures in programming modes
+;;   (ligature-set-ligatures 'prog-mode '("-|" "-~" "---" "-<<" "-<" "--" "->" "->>" "-->" "///" "/=" "/=="
+;;                                       "/>" "//" "/*" "*>" "***" "*/" "<-" "<<-" "<=>" "<=" "<|" "<||"
+;;                                       "<|||" "<|>" "<:" "<>" "<-<" "<<<" "<==" "<<=" "<=<" "<==>" "<-|"
+;;                                       "<<" "<~>" "<=|" "<~~" "<~" "<$>" "<$" "<+>" "<+" "</>" "</" "<*"
+;;                                       "<*>" "<->" "<!--" ":>" ":<" ":::" "::" ":?" ":?>" ":=" "::=" "=>>"
+;;                                       "==>" "=/=" "=!=" "=>" "===" "=:=" "==" "!==" "!!" "!=" ">]" ">:"
+;;                                       ">>-" ">>=" ">=>" ">>>" ">-" ">=" "&&&" "&&" "|||>" "||>" "|>" "|]"
+;;                                       "|}" "|=>" "|->" "|=" "||-" "|-" "||=" "||" ".." ".?" ".=" ".-" "..<"
+;;                                       "..." "+++" "+>" "++" "[||]" "[<" "[|" "{|" "??" "?." "?=" "?:" "##"
+;;                                       "###" "####" "#[" "#{" "#=" "#!" "#:" "#_(" "#_" "#?" "#(" ";;" "_|_"
+;;                                       "__" "~~" "~~>" "~>" "~-" "~@" "$>" "^=" "]#"))
+;;   ;; Enables ligature checks globally in all buffers. You can also do it
+;;   ;; per mode with `ligature-mode'.
+;;   (global-ligature-mode t))
 
 
 ;; ==============================

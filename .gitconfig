@@ -21,3 +21,5 @@
 	clean = git-lfs clean -- %f
 [core]
 	pager = less
+[init]
+	defaultBranch = main

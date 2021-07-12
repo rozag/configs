@@ -305,6 +305,12 @@
 
 
 ;; ==============================
+;; Fix line number column width
+;; ==============================
+(setq display-line-numbers-width-start 10000)
+
+
+;; ==============================
 ;; Highlight matching parentheses
 ;; ==============================
 (show-paren-mode t)
@@ -352,9 +358,24 @@
 
 
 ;; ==============================
+;; Display column number in powerline
+;; ==============================
+(column-number-mode t)
+
+
+;; ==============================
 ;; Hide file icon from title bar
 ;; ==============================
 (setq ns-use-proxy-icon nil)
+
+
+;; ==============================
+;; Scroll settings
+;; ==============================
+(setq
+ mouse-wheel-scroll-amount '(1 ((shift) . 1)) ;; mouse scroll one line at a time
+ mouse-wheel-progressive-speed nil            ;; don't accelerate scrolling
+ scroll-step 5)                               ;; keyboard scroll one line at a time
 
 
 ;; ==============================

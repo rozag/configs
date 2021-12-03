@@ -391,8 +391,51 @@
 
 
 ;; ==============================
+;; Tabs
+;; ==============================
+(global-tab-line-mode t)
+
+(setq
+ tab-line-new-button-show nil
+ tab-line-close-button-show nil)
+
+(defvar my/tab-box-width 4)
+(defvar my/tab-color-current "#492A4E")
+(defvar my/tab-color-focused "#6F4075")
+(defvar my/tab-color-inactive "#292B2E")
+
+(set-face-attribute 'tab-line nil
+		    :background 'unspecified
+		    :foreground 'unspecified
+		    :box nil)
+(set-face-attribute 'tab-line-tab nil
+		    :background "#292B2E"
+		    :foreground 'unspecified
+		    :box '(:line-width 4
+			   :color "#292B2E"))
+(set-face-attribute 'tab-line-tab-inactive nil
+		    :inherit 'tab-line-tab)
+(set-face-attribute 'tab-line-highlight nil
+		    :inherit 'tab-line-tab
+		    :background "#6F4075"
+		    :box '(:line-width 4
+			   :color "#6F4075"))
+(set-face-attribute 'tab-line-tab-current nil
+		    :inherit 'tab-line-tab
+		    :background "#492A4E"
+		    :box '(:line-width 4
+			   :color "#492A4E"))
+
+
+;; ==============================
 ;; Open some files on startup
 ;; ==============================
 (find-file "~/.emacs")
 (find-file "~/org-files/planner.org")
+
+
+;; ==============================
+;; Kill unneeded buffers
+;; ==============================
+(kill-buffer "*scratch*")
 

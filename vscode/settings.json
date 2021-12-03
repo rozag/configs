@@ -68,6 +68,5 @@
     "githubPullRequests.showInSCM": true,
     "githubPullRequests.telemetry.enabled": false,
     "diffEditor.renderSideBySide": false,
-    "workbench.editorAssociations": [],
     "editor.fontSize": 13
 }

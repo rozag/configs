@@ -16,7 +16,7 @@
      ("???" . "#dc752f")))
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages
-   '(flycheck elpy exec-path-from-shell py-autopep8 python-mode org-bullets kotlin-mode groovy-mode gradle-mode yaml-mode which-key spacemacs-theme neotree projectile use-package evil-visual-mark-mode))
+   '(centaur-tabs flycheck elpy exec-path-from-shell py-autopep8 python-mode org-bullets kotlin-mode groovy-mode gradle-mode yaml-mode which-key spacemacs-theme neotree projectile use-package evil-visual-mark-mode))
  '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
  '(python-shell-interpreter "python3")
  '(tool-bar-mode nil))
@@ -57,8 +57,10 @@
 (use-package evil
   :ensure t
   :init
-  (setq evil-want-C-u-scroll t)
-  (setq evil-respect-visual-line-mode t)
+  (setq
+   evil-want-C-u-scroll t
+   evil-respect-visual-line-mode t
+   evil-symbol-word-search t)
   (evil-mode t)
   :config
   (evil-set-undo-system 'undo-tree))
@@ -203,6 +205,34 @@
   :ensure t
   :hook
     (elpy-mode . flycheck-mode))
+
+(use-package centaur-tabs
+  :ensure t
+  :demand
+  :init
+  :config
+    (centaur-tabs-mode t)
+    (setq
+     centaur-tabs-height 32
+     centaur-tabs-set-icons t
+     centaur-tabs-set-modified-marker t
+     centaur-tabs-modified-marker "●"
+     centaur-tabs-gray-out-icons 'buffer
+     centaur-tabs-set-bar 'over)
+    (defun centaur-tabs-buffer-groups ()
+     (list "GROUP"))
+    (defun centaur-tabs-hide-tab (x)
+      "Disable tabs for certain buffer types"
+      (let ((name (format "%s" x)))
+        (or
+         (window-dedicated-p (selected-window))
+         (string-prefix-p "*Messag" name))))
+  :bind
+  ("C-x <left>" . centaur-tabs-backward)
+  ("C-x <right>" . centaur-tabs-forward)
+  (:map evil-normal-state-map
+    ("g t" . centaur-tabs-forward)
+    ("g T" . centaur-tabs-backward)))
 
 
 ;; ==============================
@@ -391,40 +421,9 @@
 
 
 ;; ==============================
-;; Tabs
+;; Kill current buffer faster
 ;; ==============================
-(global-tab-line-mode t)
-
-(setq
- tab-line-new-button-show nil
- tab-line-close-button-show nil)
-
-(defvar my/tab-box-width 4)
-(defvar my/tab-color-current "#492A4E")
-(defvar my/tab-color-focused "#6F4075")
-(defvar my/tab-color-inactive "#292B2E")
-
-(set-face-attribute 'tab-line nil
-		    :background 'unspecified
-		    :foreground 'unspecified
-		    :box nil)
-(set-face-attribute 'tab-line-tab nil
-		    :background "#292B2E"
-		    :foreground 'unspecified
-		    :box '(:line-width 4
-			   :color "#292B2E"))
-(set-face-attribute 'tab-line-tab-inactive nil
-		    :inherit 'tab-line-tab)
-(set-face-attribute 'tab-line-highlight nil
-		    :inherit 'tab-line-tab
-		    :background "#6F4075"
-		    :box '(:line-width 4
-			   :color "#6F4075"))
-(set-face-attribute 'tab-line-tab-current nil
-		    :inherit 'tab-line-tab
-		    :background "#492A4E"
-		    :box '(:line-width 4
-			   :color "#492A4E"))
+(global-set-key (kbd "C-x k") 'kill-this-buffer)
 
 
 ;; ==============================

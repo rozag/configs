@@ -230,6 +230,8 @@
   :bind
   ("C-x <left>" . centaur-tabs-backward)
   ("C-x <right>" . centaur-tabs-forward)
+  ("<C-S-tab>" . centaur-tabs-backward)
+  ("<C-tab>" . centaur-tabs-forward)
   (:map evil-normal-state-map
     ("g t" . centaur-tabs-forward)
     ("g T" . centaur-tabs-backward)))

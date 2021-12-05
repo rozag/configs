@@ -339,7 +339,7 @@
 ;; ==============================
 ;; Fix line number column width
 ;; ==============================
-(setq display-line-numbers-width-start 10000)
+(setq display-line-numbers-width-start t)
 
 
 ;; ==============================

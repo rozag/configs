@@ -8,15 +8,9 @@
  '(custom-enabled-themes '(spacemacs-dark))
  '(custom-safe-themes
    '("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default))
- '(hl-todo-keyword-faces
-   '(("TODO" . "#dc752f")
-     ("HACK" . "#b1951d")
-     ("TEMP" . "#b1951d")
-     ("FIXME" . "#dc752f")
-     ("???" . "#dc752f")))
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages
-   '(centaur-tabs flycheck elpy exec-path-from-shell py-autopep8 python-mode org-bullets kotlin-mode groovy-mode gradle-mode yaml-mode which-key spacemacs-theme neotree projectile use-package evil-visual-mark-mode))
+   '(hl-todo centaur-tabs flycheck elpy exec-path-from-shell py-autopep8 python-mode org-bullets kotlin-mode groovy-mode gradle-mode yaml-mode which-key spacemacs-theme neotree projectile use-package evil-visual-mark-mode))
  '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
  '(python-shell-interpreter "python3")
  '(tool-bar-mode nil))
@@ -190,6 +184,10 @@
   :ensure t
   :init
     (elpy-enable)
+  :hook
+    (elpy-mode . display-fill-column-indicator-mode)  
+    (elpy-mode . (lambda () (setq display-fill-column-indicator-column 80)))
+    (elpy-mode . (lambda () (highlight-indentation-mode -1)))
   :config
     (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
     (setq elpy-shell-echo-output nil)
@@ -205,6 +203,20 @@
   :ensure t
   :hook
     (elpy-mode . flycheck-mode))
+
+(use-package hl-todo
+  :ensure t
+  :hook
+  (prog-mode . hl-todo-mode)
+  :config
+  (setq hl-todo-highlight-punctuation ":"
+	hl-todo-keyword-faces
+	'(("TODO" . "#dc752f")
+	  ("HACK" . "#b1951d")
+	  ("TEMP" . "#b1951d")
+	  ("FIXME" . "#dc752f")
+	  ("DEPRECATED" . "#dc752f")
+	  ("???" . "#dc752f"))))
 
 (use-package centaur-tabs
   :ensure t

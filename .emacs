@@ -238,12 +238,15 @@
       (let ((name (format "%s" x)))
         (or
          (window-dedicated-p (selected-window))
-         (string-prefix-p "*Messag" name))))
+         (string-prefix-p "*Messag" name)
+	 (string-prefix-p "*Calcul" name))))
   :bind
   ("C-x <left>" . centaur-tabs-backward)
   ("C-x <right>" . centaur-tabs-forward)
   ("<C-S-tab>" . centaur-tabs-backward)
   ("<C-tab>" . centaur-tabs-forward)
+  ("<s-S-left>" . centaur-tabs-move-current-tab-to-left)
+  ("<s-S-right>" . centaur-tabs-move-current-tab-to-right)
   (:map evil-normal-state-map
     ("g t" . centaur-tabs-forward)
     ("g T" . centaur-tabs-backward)))

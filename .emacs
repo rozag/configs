@@ -82,11 +82,6 @@
   :ensure t
   :init (counsel-mode t))
 
-(use-package counsel-projectile
-  :ensure t
-  :after projectile
-  :init (counsel-projectile-mode t))
-
 (use-package all-the-icons-ivy-rich
   :ensure t
   :init (all-the-icons-ivy-rich-mode t))
@@ -104,8 +99,24 @@
     (setq projectile-switch-project-action 'neotree-projectile-action)
   :bind
     (:map projectile-mode-map
-      ("s-p" . projectile-command-map))
+      ("s-p" . projectile-command-map)
+      ;; This invokes real projectile-grep...
+      ("C-S-f" . (lambda () (interactive) (counsel-M-x-action (projectile-grep))))
+      ;; ...and this invokes counsel-projectile-grep
+      ("C-M-f" . projectile-grep))
     ("C-c p" . projectile-command-map))
+
+(use-package counsel-projectile
+  :ensure t
+  :after projectile
+  :bind
+    (:map projectile-mode-map
+      ("s-j" . counsel-projectile))
+  :init
+    (counsel-projectile-mode t)
+    (if
+      (eq system-type 'darwin)
+      (setq counsel-projectile-grep-base-command "ggrep -rnEI %s")))
 
 (use-package neotree
   :ensure t
@@ -441,6 +452,12 @@
 ;; Kill current buffer faster
 ;; ==============================
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
+
+
+;; ==============================
+;; Keep buffers in sync with fs
+;; ==============================
+(global-auto-revert-mode t)
 
 
 ;; ==============================

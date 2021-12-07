@@ -241,7 +241,8 @@
      centaur-tabs-set-modified-marker t
      centaur-tabs-modified-marker "●"
      centaur-tabs-gray-out-icons 'buffer
-     centaur-tabs-set-bar 'over)
+     centaur-tabs-show-count t
+     centaur-tabs-show-new-tab-button nil)
     (defun centaur-tabs-buffer-groups ()
      (list "GROUP"))
     (defun centaur-tabs-hide-tab (x)
@@ -452,6 +453,12 @@
 ;; Kill current buffer faster
 ;; ==============================
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
+
+
+;; ==============================
+;; Comment / uncomment lines easier
+;; ==============================
+(global-set-key (kbd "s-/") 'comment-line)
 
 
 ;; ==============================

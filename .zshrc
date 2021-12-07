@@ -184,6 +184,15 @@ if [ -f "$ME/Library/google-cloud-sdk/path.zsh.inc" ]; then . "$ME/Library/googl
 # The next line enables shell command completion for gcloud.
 if [ -f "$ME/Library/google-cloud-sdk/completion.zsh.inc" ]; then . "$ME/Library/google-cloud-sdk/completion.zsh.inc"; fi
 
+# Shortcut for aita-android-review-reminder launch
+function review-reminder {
+    cd ~/workspace/aita-android-review-reminder
+    source .env
+    make run-org ONLY_USER=rozag
+    export GH_TOKEN=''
+    cd -
+}
+
 # Print great advice
 advice
 

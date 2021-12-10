@@ -475,6 +475,24 @@
 
 
 ;; ==============================
+;; Launch aita-android-review-reminder from Emacs
+;; ==============================
+(defun aita-android-review-reminder ()
+  (interactive)
+  (insert
+   (shell-command-to-string
+    (concat
+     "("
+     "cd ~/workspace/aita-android-review-reminder "
+     "&& source .env "
+     "&& make run-org ONLY_USER=rozag "
+     "&& export GH_TOKEN='' "
+     "&& cd - "
+     ") "
+     "| tail -n +2"))))
+
+
+;; ==============================
 ;; Kill unneeded buffers
 ;; ==============================
 (kill-buffer "*scratch*")

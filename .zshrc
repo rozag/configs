@@ -188,7 +188,7 @@ if [ -f "$ME/Library/google-cloud-sdk/completion.zsh.inc" ]; then . "$ME/Library
 function review-reminder {
     cd ~/workspace/aita-android-review-reminder
     source .env
-    make run-org ONLY_USER=rozag
+    make run-md ONLY_USER=rozag
     export GH_TOKEN=''
     cd -
 }

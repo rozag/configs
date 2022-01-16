@@ -103,7 +103,7 @@ alias dx='$ANDROID_HOME/build-tools/25.0.2/dx'
 alias dex2jar='$AHACK/dex2jar-2.0/d2j-dex2jar.sh'
 alias backdoor-apk='$AHACK/backdoor-apk/backdoor-apk.sh'
 
-alias checkstyle='java -jar ~/Library/Android/checkstyle-9.1-all.jar'
+alias checkstyle='java -jar ~/Library/Android/checkstyle-9.2.1-all.jar'
 
 # Emacs
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'

@@ -12,6 +12,7 @@ set ideajoin
 
 " Fancy clipboard
 set clipboard+=ideaput
+set clipboard+=unnamed
 
 " Disable NERDTree hotkey
 noremap <C-n> <NOP>

@@ -10,7 +10,7 @@
    '("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default))
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages
-   '(hl-todo centaur-tabs flycheck elpy exec-path-from-shell py-autopep8 python-mode org-bullets kotlin-mode groovy-mode gradle-mode yaml-mode which-key spacemacs-theme neotree projectile use-package evil-visual-mark-mode))
+   '(dracula-theme hl-todo centaur-tabs flycheck elpy exec-path-from-shell py-autopep8 python-mode org-bullets kotlin-mode groovy-mode gradle-mode yaml-mode which-key spacemacs-theme neotree projectile use-package evil-visual-mark-mode))
  '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
  '(python-shell-interpreter "python3")
  '(tool-bar-mode nil))
@@ -19,7 +19,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-date ((t (:foreground "#7590db" :underline nil)))))
+ '(org-date ((t (:foreground "#FF79C6" :underline nil)))))
 
 
 ;; ==============================
@@ -137,9 +137,9 @@
   :bind
     ("M-1" . neotree-toggle))
 
-(use-package spacemacs-common
-  :ensure spacemacs-theme
-  :config (load-theme 'spacemacs-dark t))
+(use-package dracula-theme
+  :ensure t
+  :init (load-theme 'dracula t))
 
 (use-package which-key
   :ensure t
@@ -222,12 +222,12 @@
   :config
   (setq hl-todo-highlight-punctuation ":"
 	hl-todo-keyword-faces
-	'(("TODO" . "#dc752f")
-	  ("HACK" . "#b1951d")
-	  ("TEMP" . "#b1951d")
-	  ("FIXME" . "#dc752f")
-	  ("DEPRECATED" . "#dc752f")
-	  ("???" . "#dc752f"))))
+	'(("TODO" . "#FF4443")
+	  ("HACK" . "#FF4443")
+	  ("TEMP" . "#FF4443")
+	  ("FIXME" . "#FF4443")
+	  ("DEPRECATED" . "#FF4443")
+	  ("???" . "#FF4443"))))
 
 (use-package centaur-tabs
   :ensure t
@@ -285,64 +285,6 @@
 (set-fontset-font t 'symbol "Noto Color Emoji" nil 'append)
 (set-fontset-font t 'symbol "Segoe UI Emoji" nil 'append)
 (set-fontset-font t 'symbol "Symbola" nil 'append)
-
-
-;; ==============================
-;; Enable ligatures
-;; ==============================
-
-;; ==> Old attempt to make ligatures work, had to disable because sometimes it just freezes Emacs
-;; (let ((ligatures `((?-  ,(regexp-opt '("-|" "-~" "---" "-<<" "-<" "--" "->" "->>" "-->")))
-;;                      (?/  ,(regexp-opt '("/**" "/*" "///" "/=" "/==" "/>" "//")))
-;;                      (?*  ,(regexp-opt '("*>" "***" "*/")))
-;;                      (?<  ,(regexp-opt '("<-" "<<-" "<=>" "<=" "<|" "<||" "<|||" "<|>" "<:" "<>" "<-<"
-;;                                            "<<<" "<==" "<<=" "<=<" "<==>" "<-|" "<<" "<~>" "<=|" "<~~" "<~"
-;;                                            "<$>" "<$" "<+>" "<+" "</>" "</" "<*" "<*>" "<->" "<!--")))
-;;                      (?:  ,(regexp-opt '(":>" ":<" ":::" "::" ":?" ":?>" ":=" "::=")))
-;;                      (?=  ,(regexp-opt '("=>>" "==>" "=/=" "=!=" "=>" "===" "=:=" "==")))
-;;                      (?!  ,(regexp-opt '("!==" "!!" "!=")))
-;;                      (?>  ,(regexp-opt '(">]" ">:" ">>-" ">>=" ">=>" ">>>" ">-" ">=")))
-;;                      (?&  ,(regexp-opt '("&&&" "&&")))
-;;                      (?|  ,(regexp-opt '("|||>" "||>" "|>" "|]" "|}" "|=>" "|->" "|=" "||-" "|-" "||=" "||")))
-;;                      (?.  ,(regexp-opt '(".." ".?" ".=" ".-" "..<" "...")))
-;;                      (?+  ,(regexp-opt '("+++" "+>" "++")))
-;;                      (?\[ ,(regexp-opt '("[||]" "[<" "[|")))
-;;                      (?\{ ,(regexp-opt '("{|")))
-;;                      (?\? ,(regexp-opt '("??" "?." "?=" "?:")))
-;;                      (?#  ,(regexp-opt '("####" "###" "#[" "#{" "#=" "#!" "#:" "#_(" "#_" "#?" "#(" "##")))
-;;                      (?\; ,(regexp-opt '(";;")))
-;;                      (?_  ,(regexp-opt '("_|_" "__")))
-;;                      (?\\ ,(regexp-opt '("\\" "\\/")))
-;;                      (?~  ,(regexp-opt '("~~" "~~>" "~>" "~=" "~-" "~@")))
-;;                      (?$  ,(regexp-opt '("$>")))
-;;                      (?^  ,(regexp-opt '("^=")))
-;;                      (?\] ,(regexp-opt '("]#"))))))
-;;     (dolist (char-regexp ligatures)
-;;       (apply (lambda (char regexp) (set-char-table-range
-;;                                     composition-function-table
-;;                                     char `([,regexp 0 font-shape-gstring])))
-;;              char-regexp)))
-
-;; ==> 2nd attempt to make ligatures work. Looks much better, still freezes Emacs sometimes. 
-;; (use-package ligature
-;;   ;; TODO: get this package from MELPA when available
-;;   :load-path "~/workspace/ligature.el"
-;;   :config
-;;   ;; Enable all JetBrains Mono ligatures in programming modes
-;;   (ligature-set-ligatures 'prog-mode '("-|" "-~" "---" "-<<" "-<" "--" "->" "->>" "-->" "///" "/=" "/=="
-;;                                       "/>" "//" "/*" "*>" "***" "*/" "<-" "<<-" "<=>" "<=" "<|" "<||"
-;;                                       "<|||" "<|>" "<:" "<>" "<-<" "<<<" "<==" "<<=" "<=<" "<==>" "<-|"
-;;                                       "<<" "<~>" "<=|" "<~~" "<~" "<$>" "<$" "<+>" "<+" "</>" "</" "<*"
-;;                                       "<*>" "<->" "<!--" ":>" ":<" ":::" "::" ":?" ":?>" ":=" "::=" "=>>"
-;;                                       "==>" "=/=" "=!=" "=>" "===" "=:=" "==" "!==" "!!" "!=" ">]" ">:"
-;;                                       ">>-" ">>=" ">=>" ">>>" ">-" ">=" "&&&" "&&" "|||>" "||>" "|>" "|]"
-;;                                       "|}" "|=>" "|->" "|=" "||-" "|-" "||=" "||" ".." ".?" ".=" ".-" "..<"
-;;                                       "..." "+++" "+>" "++" "[||]" "[<" "[|" "{|" "??" "?." "?=" "?:" "##"
-;;                                       "###" "####" "#[" "#{" "#=" "#!" "#:" "#_(" "#_" "#?" "#(" ";;" "_|_"
-;;                                       "__" "~~" "~~>" "~>" "~-" "~@" "$>" "^=" "]#"))
-;;   ;; Enables ligature checks globally in all buffers. You can also do it
-;;   ;; per mode with `ligature-mode'.
-;;   (global-ligature-mode t))
 
 
 ;; ==============================

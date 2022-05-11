@@ -32,6 +32,9 @@ export PATH="/usr/local/Cellar/scrcpy/1.8/bin:$PATH"
 export PATH="/usr/local/opt/libxml2/bin:$PATH"
 export PKG_CONFIG_PATH="/usr/local/opt/libxml2/lib/pkgconfig"
 
+# Java
+export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
+
 # Gradle completion
 fpath=($HOME/.zsh/gradle-completion $fpath)
 
@@ -39,7 +42,7 @@ fpath=($HOME/.zsh/gradle-completion $fpath)
 export ANDROID_HVPROTO=ddm
 
 # gcloud SDK
-export CLOUDSDK_PYTHON=/usr/local/Cellar/python@3.8/3.8.12_1/bin/python3.8
+export CLOUDSDK_PYTHON=/usr/local/Cellar/python@3.8/3.8.13/bin/python3.8
 
 plugins=(git)
 
@@ -103,7 +106,7 @@ alias dx='$ANDROID_HOME/build-tools/25.0.2/dx'
 alias dex2jar='$AHACK/dex2jar-2.0/d2j-dex2jar.sh'
 alias backdoor-apk='$AHACK/backdoor-apk/backdoor-apk.sh'
 
-alias checkstyle='java -jar ~/Library/Android/checkstyle-9.3-all.jar'
+alias checkstyle='java -jar ~/Library/Android/checkstyle-10.0-all.jar'
 
 # Emacs
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'

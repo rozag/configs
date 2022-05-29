@@ -10,7 +10,7 @@
    '("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default))
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages
-   '(dracula-theme hl-todo centaur-tabs flycheck elpy exec-path-from-shell py-autopep8 python-mode org-bullets kotlin-mode groovy-mode gradle-mode yaml-mode which-key spacemacs-theme neotree projectile use-package evil-visual-mark-mode))
+   '(format-all dracula-theme hl-todo centaur-tabs flycheck elpy exec-path-from-shell py-autopep8 python-mode org-bullets kotlin-mode groovy-mode gradle-mode yaml-mode which-key spacemacs-theme neotree projectile use-package evil-visual-mark-mode))
  '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
  '(python-shell-interpreter "python3")
  '(tool-bar-mode nil))
@@ -54,7 +54,8 @@
   (setq
    evil-want-C-u-scroll t
    evil-respect-visual-line-mode t
-   evil-symbol-word-search t)
+   evil-symbol-word-search t
+   evil-want-C-i-jump nil)
   (evil-mode t)
   :config
   (evil-set-undo-system 'undo-tree))
@@ -62,6 +63,7 @@
 (use-package undo-tree
   :ensure t
   :init
+  (setq undo-tree-auto-save-history nil)
   (global-undo-tree-mode))
 
 (use-package evil-surround
@@ -251,7 +253,8 @@
         (or
          (window-dedicated-p (selected-window))
          (string-prefix-p "*Messag" name)
-	 (string-prefix-p "*Calcul" name))))
+	 (string-prefix-p "*Calcul" name)
+	 (string-prefix-p "*format-all-" name))))
   :bind
   ("C-x <left>" . centaur-tabs-backward)
   ("C-x <right>" . centaur-tabs-forward)
@@ -262,6 +265,17 @@
   (:map evil-normal-state-map
     ("g t" . centaur-tabs-forward)
     ("g T" . centaur-tabs-backward)))
+
+(use-package format-all
+  :ensure t
+  :hook
+    (c-mode . format-all-mode)
+    (c++-mode . format-all-mode)
+    (format-all-mode . format-all-ensure-formatter)
+  :config
+    (setq-default format-all-formatters
+	'(("C" clang-format)
+	  ("C++" clang-format))))
 
 
 ;; ==============================

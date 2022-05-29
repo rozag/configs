@@ -272,6 +272,8 @@
     (c-mode . format-all-mode)
     (c++-mode . format-all-mode)
     (format-all-mode . format-all-ensure-formatter)
+    (format-all-mode . display-fill-column-indicator-mode)  
+    (format-all-mode . (lambda () (setq display-fill-column-indicator-column 80)))
   :config
     (setq-default format-all-formatters
 	'(("C" clang-format)

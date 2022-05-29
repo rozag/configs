@@ -98,7 +98,7 @@ export AHACK=$ME/Library/Android/hack
 export ANDROID_HOME=$ME/Library/Android/sdk
 
 alias apktool='java -jar $AHACK/apktool_2.4.0.jar'
-alias jadx-gui='$AHACK/jadx-0.6.1/bin/jadx-gui'
+alias jadx-gui='$AHACK/jadx-1.4.0/bin/jadx-gui'
 alias baksmali='java -jar $AHACK/baksmali-2.1.3.jar'
 alias sign='java -jar $AHACK/sign.jar'
 alias droidc='javac -classpath $ANDROID_HOME/platforms/android-25/android.jar'
@@ -106,7 +106,7 @@ alias dx='$ANDROID_HOME/build-tools/25.0.2/dx'
 alias dex2jar='$AHACK/dex2jar-2.0/d2j-dex2jar.sh'
 alias backdoor-apk='$AHACK/backdoor-apk/backdoor-apk.sh'
 
-alias checkstyle='java -jar ~/Library/Android/checkstyle-10.0-all.jar'
+alias checkstyle='java -jar ~/Library/Android/checkstyle-10.2-all.jar'
 
 # Emacs
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'

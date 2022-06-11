@@ -35,6 +35,12 @@ export PKG_CONFIG_PATH="/usr/local/opt/libxml2/lib/pkgconfig"
 # Java
 export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
 
+# If you need to have binutils first in your PATH, run:
+export PATH="/usr/local/opt/binutils/bin:$PATH"
+# For compilers to find binutils you may need to set:
+# export LDFLAGS="-L/usr/local/opt/binutils/lib"
+# export CPPFLAGS="-I/usr/local/opt/binutils/include"
+
 # Gradle completion
 fpath=($HOME/.zsh/gradle-completion $fpath)
 

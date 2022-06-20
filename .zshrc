@@ -48,7 +48,7 @@ fpath=($HOME/.zsh/gradle-completion $fpath)
 export ANDROID_HVPROTO=ddm
 
 # gcloud SDK
-export CLOUDSDK_PYTHON=/usr/local/Cellar/python@3.8/3.8.13/bin/python3.8
+export CLOUDSDK_PYTHON=/usr/local/Cellar/python@3.8/3.8.13_1/bin/python3.8
 
 plugins=(git)
 

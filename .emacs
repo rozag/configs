@@ -433,6 +433,12 @@
 
 
 ;; ==============================
+;; Run terminal
+;; ==============================
+(term "/bin/zsh")
+
+
+;; ==============================
 ;; Launch aita-android-review-reminder from Emacs
 ;; ==============================
 (defun aita-android-review-reminder ()

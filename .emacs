@@ -295,7 +295,12 @@
       (setq-local tab-width 2)))
      (before-save . gofmt-before-save))
   :config
-    (add-to-list 'auto-mode-alist '("\\.go?\\'" . go-mode)))
+    (add-to-list 'auto-mode-alist '("\\.go?\\'" . go-mode))
+  :bind
+    (:map evil-normal-state-map
+      ("K" . godef-describe)
+      ("C-K" . godoc-at-point)
+      ("g d" . godef-jump-other-window)))
 
 (use-package solidity-mode
   :ensure t
@@ -477,6 +482,26 @@
      "&& cd - "
      ") "
      "| tail -n +2"))))
+
+
+;; ==============================
+;; Simplify closing "pop-ups"
+;; ==============================
+(defun close-and-kill-this-pane ()
+  "If there are multiple windows, then close this pane and kill the buffer in it also."
+  (interactive)
+  (kill-this-buffer)
+  (if (not (one-window-p))
+    (delete-window)))
+(defun close-and-kill-next-pane ()
+  "If there are multiple windows, then close the other pane and kill the buffer in it also."
+  (interactive)
+  (other-window 1)
+  (kill-this-buffer)
+  (if (not (one-window-p))
+    (delete-window)))
+(global-set-key (kbd "C-x 4 0") 'close-and-kill-this-pane)
+(global-set-key (kbd "C-x 4 1") 'close-and-kill-next-pane)
 
 
 ;; ==============================

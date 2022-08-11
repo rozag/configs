@@ -41,6 +41,9 @@ export PATH="/usr/local/opt/binutils/bin:$PATH"
 # export LDFLAGS="-L/usr/local/opt/binutils/lib"
 # export CPPFLAGS="-I/usr/local/opt/binutils/include"
 
+# Solana
+export PATH="/Users/rozag/.local/share/solana/install/active_release/bin:$PATH"
+
 # Gradle completion
 fpath=($HOME/.zsh/gradle-completion $fpath)
 

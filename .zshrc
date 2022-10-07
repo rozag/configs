@@ -42,7 +42,10 @@ export PATH="/usr/local/opt/binutils/bin:$PATH"
 # export CPPFLAGS="-I/usr/local/opt/binutils/include"
 
 # Solana
-export PATH="/Users/rozag/.local/share/solana/install/active_release/bin:$PATH"
+export PATH="$ME/.local/share/solana/install/active_release/bin:$PATH"
+
+# Doom Emacs
+export PATH="$ME/.emacs.d/bin:$PATH"
 
 # Gradle completion
 fpath=($HOME/.zsh/gradle-completion $fpath)
@@ -117,11 +120,10 @@ alias backdoor-apk='$AHACK/backdoor-apk/backdoor-apk.sh'
 
 alias checkstyle='java -jar ~/Library/Android/checkstyle-10.3-all.jar'
 
-# Emacs
-alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
-
 # ki (https://blog.jetbrains.com/kotlin/2021/04/ki-the-next-interactive-shell-for-kotlin/)
 alias ki='/usr/local/bin/ki/bin/ki.sh'
+
+alias gcc='gcc-12'
 
 # Pull database from device
 function pulldevdb {

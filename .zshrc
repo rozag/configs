@@ -125,6 +125,9 @@ alias ki='/usr/local/bin/ki/bin/ki.sh'
 
 alias gcc='gcc-12'
 
+alias python='python3'
+alias pip='pip3'
+
 # Pull database from device
 function pulldevdb {
     adb exec-out run-as $1 cat databases/$2 > $2

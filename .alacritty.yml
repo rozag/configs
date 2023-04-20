@@ -4,6 +4,13 @@
 import:
   - ~/configs/alacritty-theme-dracula.yml
 
+shell:
+  program: /bin/zsh
+  args:
+    - -l
+    - -c
+    - "tmux attach || tmux"
+
 window:
   # Window padding (changes require restart)
   #

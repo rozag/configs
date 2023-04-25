@@ -33,7 +33,7 @@ export PATH="/usr/local/opt/libxml2/bin:$PATH"
 export PKG_CONFIG_PATH="/usr/local/opt/libxml2/lib/pkgconfig"
 
 # Java
-export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
+export PATH="/usr/local/opt/openjdk@17/bin:$PATH"
 
 # If you need to have binutils first in your PATH, run:
 export PATH="/usr/local/opt/binutils/bin:$PATH"

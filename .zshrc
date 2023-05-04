@@ -212,3 +212,5 @@ function review-reminder {
 # Print great advice
 advice
 
+# Prevent brew from randomly breaking stuff...
+export HOMEBREW_NO_AUTO_UPDATE=1

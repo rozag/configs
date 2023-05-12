@@ -2,7 +2,23 @@
 # Template source: https://github.com/alacritty/alacritty/releases/tag/v0.12.0
 
 import:
-  - ~/configs/alacritty-theme-dracula.yml
+  - ~/configs/alacritty-themes/themes/alacritty-theme-dracula.yml
+  # - ~/configs/alacritty-themes/themes/tomorrow_night.yaml
+  # - ~/configs/alacritty-themes/themes/doom_one.yaml
+  # - ~/configs/alacritty-themes/themes/github_dark_default.yaml
+  # - ~/configs/alacritty-themes/themes/github_light_default.yaml
+  # - ~/configs/alacritty-themes/themes/gruvbox_light.yaml
+  # - ~/configs/alacritty-themes/themes/gruvbox_material.yaml
+  # - ~/configs/alacritty-themes/themes/material_theme.yaml
+  # - ~/configs/alacritty-themes/themes/monokai_pro.yaml
+  # - ~/configs/alacritty-themes/themes/moonlight_ii_vscode.yaml
+
+shell:
+  program: /bin/zsh
+  args:
+    - -l
+    - -c
+    - "tmux attach || tmux"
 
 window:
   # Window padding (changes require restart)
@@ -344,7 +360,7 @@ key_bindings:
   #- { key: End,       mods: Shift,   mode: ~Alt,        action: ScrollToBottom }
 
   # Vi Mode
-  - { key: V, mods: Shift|Command, mode: ~Search, action: ToggleViMode }
+  # - { key: V, mods: Shift|Command, mode: ~Search, action: ToggleViMode }
   #- { key: Space,  mods: Shift|Control, mode: Vi|~Search, action: ScrollToBottom          }
   #- { key: Escape,                      mode: Vi|~Search, action: ClearSelection          }
   #- { key: I,                           mode: Vi|~Search, action: ToggleViMode            }

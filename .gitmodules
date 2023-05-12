@@ -1,3 +1,6 @@
 [submodule "zsh-dracula-theme"]
 	path = zsh-dracula-theme
 	url = https://github.com/dracula/zsh.git
+[submodule "alacritty-themes"]
+	path = alacritty-themes
+	url = git@github.com:alacritty/alacritty-theme.git

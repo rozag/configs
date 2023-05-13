@@ -62,6 +62,7 @@ source $ZSH/oh-my-zsh.sh
 
 export ENABLE_CORRECTION="true"
 
+alias vim="nvim"
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias advice="advice | cowsay"

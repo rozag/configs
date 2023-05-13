@@ -82,7 +82,7 @@ window:
 font:
   # Normal (roman) font face
   normal:
-    family: "JetBrains Mono"
+    family: "JetBrainsMono Nerd Font"
     style: Regular
 
   # Point size

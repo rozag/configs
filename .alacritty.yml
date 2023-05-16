@@ -19,6 +19,7 @@ import:
   # - ~/configs/alacritty-themes/themes/moonlight_ii_vscode.yaml
   # - ~/configs/alacritty-themes/themes/pencil_dark.yaml
   # - ~/configs/alacritty-themes/themes/horizon-dark.yaml
+  # - ~/configs/alacritty-themes/themes/one_dark.yaml
 
 shell:
   program: /bin/zsh

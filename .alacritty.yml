@@ -20,6 +20,9 @@ import:
   # - ~/configs/alacritty-themes/themes/pencil_dark.yaml
   # - ~/configs/alacritty-themes/themes/horizon-dark.yaml
   # - ~/configs/alacritty-themes/themes/one_dark.yaml
+  # - ~/configs/alacritty-themes/themes/ayu_dark.yaml
+  # - ~/configs/alacritty-themes/themes/blood_moon.yaml
+  # - ~/configs/alacritty-themes/themes/city_lights.yaml
 
 shell:
   program: /bin/zsh
@@ -92,7 +95,7 @@ font:
     style: Regular
 
   # Point size
-  size: 14.0
+  size: 13.5
 
   # Use built-in font for box drawing characters.
   #

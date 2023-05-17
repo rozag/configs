@@ -2,10 +2,10 @@
 # Template source: https://github.com/alacritty/alacritty/releases/tag/v0.12.0
 
 import:
-  - ~/configs/alacritty-themes/themes/alacritty-theme-dracula.yml
+  # - ~/configs/alacritty-themes/themes/alacritty-theme-dracula.yml
   # - ~/configs/alacritty-themes/themes/tomorrow_night.yaml
   # - ~/configs/alacritty-themes/themes/tomorrow_night_bright.yaml
-  # - ~/configs/alacritty-themes/themes/doom_one.yaml
+  - ~/configs/alacritty-themes/themes/doom_one.yaml
   # - ~/configs/alacritty-themes/themes/github_dark_default.yaml
   # - ~/configs/alacritty-themes/themes/github_dark.yaml
   # - ~/configs/alacritty-themes/themes/github_light_default.yaml
@@ -23,6 +23,11 @@ import:
   # - ~/configs/alacritty-themes/themes/ayu_dark.yaml
   # - ~/configs/alacritty-themes/themes/blood_moon.yaml
   # - ~/configs/alacritty-themes/themes/city_lights.yaml
+  # - ~/configs/alacritty-themes/themes/argonaut.yaml
+  # - ~/configs/alacritty-themes/themes/campbell.yaml
+  # - ~/configs/alacritty-themes/themes/hyper.yaml
+  # - ~/configs/alacritty-themes/themes/xterm.yaml
+  # - ~/configs/alacritty-themes/themes/wombat.yaml
 
 shell:
   program: /bin/zsh

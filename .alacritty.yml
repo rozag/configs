@@ -5,7 +5,7 @@ import:
   # - ~/configs/alacritty-themes/themes/alacritty-theme-dracula.yml
   # - ~/configs/alacritty-themes/themes/tomorrow_night.yaml
   # - ~/configs/alacritty-themes/themes/tomorrow_night_bright.yaml
-  - ~/configs/alacritty-themes/themes/doom_one.yaml
+  # - ~/configs/alacritty-themes/themes/doom_one.yaml
   # - ~/configs/alacritty-themes/themes/github_dark_default.yaml
   # - ~/configs/alacritty-themes/themes/github_dark.yaml
   # - ~/configs/alacritty-themes/themes/github_light_default.yaml
@@ -14,7 +14,7 @@ import:
   # - ~/configs/alacritty-themes/themes/gruvbox_light.yaml
   # - ~/configs/alacritty-themes/themes/gruvbox_material.yaml
   # - ~/configs/alacritty-themes/themes/material_theme.yaml
-  # - ~/configs/alacritty-themes/themes/monokai_pro.yaml
+  - ~/configs/alacritty-themes/themes/monokai_pro.yaml
   # - ~/configs/alacritty-themes/themes/monokai_charcoal.yaml
   # - ~/configs/alacritty-themes/themes/moonlight_ii_vscode.yaml
   # - ~/configs/alacritty-themes/themes/pencil_dark.yaml

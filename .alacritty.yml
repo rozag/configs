@@ -100,7 +100,7 @@ font:
     style: Regular
 
   # Point size
-  size: 13.5
+  size: 14.0
 
   # Use built-in font for box drawing characters.
   #

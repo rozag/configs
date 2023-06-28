@@ -495,3 +495,12 @@ key_bindings:
   - { key: F, mods: Command|Control, action: ToggleFullscreen }
   - { key: F, mods: Command, mode: ~Search, action: SearchForward }
   - { key: B, mods: Command, mode: ~Search, action: SearchBackward }
+
+  # For nvim
+  - { key: Tab, mods: Control, chars: "^[[C-Tab" }
+  - { key: Tab, mods: Control|Shift, chars: "^[[C-S-Tab" }
+  - { key: S, mods: Command, chars: "^[[M-s" }
+  - { key: S, mods: Command|Shift, chars: "^[[M-S-s" }
+  - { key: Slash, mods: Command, chars: "^[[M-/" }
+  - { key: L, mods: Command, chars: "^[[M-l" }
+  - { key: Key1, mods: Option, chars: "^[[A-1" }

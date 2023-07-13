@@ -500,9 +500,13 @@ key_bindings:
   - { key: Tab, mods: Control, chars: "^[[C-Tab" }
   - { key: Tab, mods: Control|Shift, chars: "^[[C-S-Tab" }
   - { key: Key1, mods: Option, chars: "^[[A-1" }
+  - { key: C, mods: Option, chars: "^[[A-c" }
+  - { key: H, mods: Option, chars: "^[[A-h" }
+  - { key: Q, mods: Option, chars: "^[[A-q" }
   - { key: L, mods: Command, chars: "^[[M-l" }
   - { key: S, mods: Command, chars: "^[[M-s" }
   - { key: S, mods: Command|Shift, chars: "^[[M-S-s" }
   - { key: Z, mods: Command, chars: "^[[M-z" }
   - { key: Z, mods: Command|Shift, chars: "^[[M-S-z" }
   - { key: Slash, mods: Command, chars: "^[[M-/" }
+  - { key: Return, mods: Command, chars: "^[[M-Return" }

@@ -125,7 +125,7 @@ alias checkstyle='java -jar ~/Library/Android/checkstyle-10.9.3-all.jar'
 # ki (https://blog.jetbrains.com/kotlin/2021/04/ki-the-next-interactive-shell-for-kotlin/)
 alias ki='/usr/local/bin/ki/bin/ki.sh'
 
-alias gcc='gcc-12'
+alias gcc='gcc-13'
 
 alias python='python3'
 alias pip='pip3'

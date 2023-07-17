@@ -12,6 +12,7 @@ export PATH=$PATH:$ANDROID_HOME/sdk/tools
 
 # Go related stuff
 export GOPATH=$HOME/workspace/go
+export CGO_ENABLED=0
 export PATH=$PATH:$(go env GOPATH)/bin
 
 export PATH="/usr/local/bin:$PATH"
@@ -54,7 +55,7 @@ fpath=($HOME/.zsh/gradle-completion $fpath)
 export ANDROID_HVPROTO=ddm
 
 # gcloud SDK
-export CLOUDSDK_PYTHON=/usr/local/Cellar/python@3.8/3.8.16/bin/python3.8
+export CLOUDSDK_PYTHON=/usr/local/bin/python3.9
 
 plugins=(git)
 
@@ -73,7 +74,6 @@ alias tarcd='tar -czf "../${PWD##*/}.tar.gz" .'
 alias wtr='curl wttr.in/moscow'
 alias kakava='python3 $ME/workspace/kakava/kakava'
 alias v='vim'
-alias wuzz='"$GOPATH/bin/wuzz"'
 alias gmnf="git merge --no-ff"
 alias gd="git icdiff"
 alias gdf="git diff-tree --no-commit-id --name-only -r"
@@ -129,6 +129,8 @@ alias gcc='gcc-13'
 
 alias python='python3'
 alias pip='pip3'
+
+alias pod='podman'
 
 # Pull database from device
 function pulldevdb {

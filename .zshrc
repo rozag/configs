@@ -12,8 +12,7 @@ export PATH=$PATH:$ANDROID_HOME/sdk/tools
 
 # Go related stuff
 export GOPATH=$HOME/workspace/go
-export CGO_ENABLED=0
-export PATH=$PATH:$(go env GOPATH)/bin
+export PATH="$PATH:$(go env GOPATH)/bin"
 
 export PATH="/usr/local/bin:$PATH"
 
@@ -53,9 +52,6 @@ fpath=($HOME/.zsh/gradle-completion $fpath)
 
 # Android Device Monitor stuff
 export ANDROID_HVPROTO=ddm
-
-# gcloud SDK
-export CLOUDSDK_PYTHON=/usr/local/bin/python3.9
 
 plugins=(git)
 
@@ -200,10 +196,9 @@ alias jm="jump"
 bindkey "^p" history-beginning-search-backward
 bindkey "^n" history-beginning-search-forward
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$ME/Library/google-cloud-sdk/path.zsh.inc" ]; then . "$ME/Library/google-cloud-sdk/path.zsh.inc"; fi
-# The next line enables shell command completion for gcloud.
-if [ -f "$ME/Library/google-cloud-sdk/completion.zsh.inc" ]; then . "$ME/Library/google-cloud-sdk/completion.zsh.inc"; fi
+# Google Cloud SDK.
+source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
 
 # Shortcut for aita-android-review-reminder launch
 function review-reminder {
@@ -219,3 +214,6 @@ advice
 
 # Prevent brew from randomly breaking stuff...
 export HOMEBREW_NO_AUTO_UPDATE=1
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terraform terraform

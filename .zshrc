@@ -1,7 +1,7 @@
 export ME=/Users/rozag
 export ZSH=$ME/.oh-my-zsh
 export LANG=en_US.UTF-8
-export EDITOR="vim"
+export EDITOR="nvim"
 export ZSH_THEME="gnzh"
 
 export ANDROID_HOME=$ME/Library/Android/sdk
@@ -191,6 +191,31 @@ compctl -K _completemarks unmark
 
 alias jm="jump"
 ### END MARKS ###
+
+### BEGIN NEOVIM MARKS ###
+# TODO: figure out how to set this up
+export NVIM_MARKPATH=$HOME/.nvim-marks
+function nvim-jump {
+    cd -P "$NVIM_MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
+}
+function nvim-mark {
+    mkdir -p "$NVIM_MARKPATH"; ln -s "$(pwd)" "$NVIM_MARKPATH/$1"
+}
+function nvim-unmark {
+    rm -i "$NVIM_MARKPATH/$1"
+}
+function nvim-marks {
+    ls -l "$NVIM_MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/ -/g' && echo
+}
+function _nvim_completemarks {
+    reply=($(ls $NVIM_MARKPATH))
+}
+
+compctl -K _nvim_completemarks nvim-jump
+compctl -K _nvim_completemarks nvim-unmark
+
+alias njm="nvim-jump"
+### END NEOVIM MARKS ###
 
 # Use C-n and C-p to cycle through history
 bindkey "^p" history-beginning-search-backward

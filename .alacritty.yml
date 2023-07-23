@@ -503,6 +503,7 @@ key_bindings:
   - { key: C, mods: Option, chars: "^[[A-c" }
   - { key: H, mods: Option, chars: "^[[A-h" }
   - { key: Q, mods: Option, chars: "^[[A-q" }
+  - { key: K, mods: Option|Shift, chars: "^[[A-S-k" }
   - { key: L, mods: Command, chars: "^[[M-l" }
   - { key: S, mods: Command, chars: "^[[M-s" }
   - { key: S, mods: Command|Shift, chars: "^[[M-S-s" }

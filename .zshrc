@@ -170,13 +170,13 @@ unalias gunwip
 
 ### BEGIN MARKS ###
 export MARKPATH=$HOME/.marks
-function jump { 
+function jump {
     cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
 }
-function mark { 
+function mark {
     mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
 }
-function unmark { 
+function unmark {
     rm -i "$MARKPATH/$1"
 }
 function marks {
@@ -193,19 +193,24 @@ alias jm="jump"
 ### END MARKS ###
 
 ### BEGIN NEOVIM MARKS ###
-# TODO: figure out how to set this up
 export NVIM_MARKPATH=$HOME/.nvim-marks
 function nvim-jump {
-    cd -P "$NVIM_MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
+    LINK=$(readlink -f "$NVIM_MARKPATH/$1") || echo "link: no such mark: $1"
+    DIR=$(dirname "$LINK") || echo "dir: no such mark: $1"
+    FILE=$(basename "$LINK") || echo "file: no such mark: $1"
+    cd "$DIR" 2>/dev/null || echo "cd: no such mark: $1"
+    nvim "$FILE"
 }
 function nvim-mark {
-    mkdir -p "$NVIM_MARKPATH"; ln -s "$(pwd)" "$NVIM_MARKPATH/$1"
+    mkdir -p "$NVIM_MARKPATH"; ln -s "$(pwd)/$1" "$NVIM_MARKPATH/$2"
 }
 function nvim-unmark {
     rm -i "$NVIM_MARKPATH/$1"
 }
 function nvim-marks {
-    ls -l "$NVIM_MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/ -/g' && echo
+    for FILE in $NVIM_MARKPATH/*; do
+        echo "$(basename $FILE) -> $(readlink -f $FILE)";
+    done
 }
 function _nvim_completemarks {
     reply=($(ls $NVIM_MARKPATH))

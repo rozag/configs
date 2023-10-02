@@ -193,31 +193,12 @@ alias jm="jump"
 ### END MARKS ###
 
 ### BEGIN NEOVIM MARKS ###
-export NVIM_MARKPATH=$HOME/.nvim-marks
 function nvim-jump {
-    LINK=$(readlink -f "$NVIM_MARKPATH/$1") || echo "link: no such mark: $1"
-    DIR=$(dirname "$LINK") || echo "dir: no such mark: $1"
-    FILE=$(basename "$LINK") || echo "file: no such mark: $1"
-    cd "$DIR" 2>/dev/null || echo "cd: no such mark: $1"
-    nvim "$FILE"
-}
-function nvim-mark {
-    mkdir -p "$NVIM_MARKPATH"; ln -s "$(pwd)/$1" "$NVIM_MARKPATH/$2"
-}
-function nvim-unmark {
-    rm -i "$NVIM_MARKPATH/$1"
-}
-function nvim-marks {
-    for FILE in $NVIM_MARKPATH/*; do
-        echo "$(basename $FILE) -> $(readlink -f $FILE)";
-    done
-}
-function _nvim_completemarks {
-    reply=($(ls $NVIM_MARKPATH))
+    jump $1
+    nvim .
 }
 
-compctl -K _nvim_completemarks nvim-jump
-compctl -K _nvim_completemarks nvim-unmark
+compctl -K _completemarks nvim-jump
 
 alias njm="nvim-jump"
 ### END NEOVIM MARKS ###

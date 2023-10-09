@@ -47,6 +47,9 @@ export PATH="$ME/.local/share/solana/install/active_release/bin:$PATH"
 # Doom Emacs
 export PATH="$ME/.emacs.d/bin:$PATH"
 
+# Using brew llvm instead of e.g. system bundled clang, might cause some issues
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+
 # Gradle completion
 fpath=($HOME/.zsh/gradle-completion $fpath)
 

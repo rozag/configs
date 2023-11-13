@@ -198,7 +198,7 @@ alias jm="jump"
 ### BEGIN NEOVIM MARKS ###
 function nvim-jump {
     jump $1
-    nvim .
+    nvim
 }
 
 compctl -K _completemarks nvim-jump

@@ -501,6 +501,7 @@ key_bindings:
   - { key: Tab, mods: Control, chars: "^[[C-Tab" }
   - { key: Tab, mods: Control|Shift, chars: "^[[C-S-Tab" }
   - { key: Key1, mods: Option, chars: "^[[A-1" }
+  - { key: Key2, mods: Option, chars: "^[[A-2" }
   - { key: C, mods: Option, chars: "^[[A-c" }
   - { key: H, mods: Command|Shift, chars: "^[[M-S-h" }
   - { key: Q, mods: Option, chars: "^[[A-q" }

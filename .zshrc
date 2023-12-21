@@ -11,7 +11,6 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/sdk/tools
 
 # Go related stuff
-export GOPATH=$HOME/workspace/go
 export PATH="$PATH:$(go env GOPATH)/bin"
 
 export PATH="/usr/local/bin:$PATH"

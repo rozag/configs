@@ -205,7 +205,7 @@ key = "Return"
 mods = "Command"
 
 [mouse]
-hide_when_typing = true
+hide_when_typing = false
 
 [scrolling]
 history = 20000

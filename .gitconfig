@@ -5,15 +5,6 @@
 	helper = cache --timeout=3600
 [alias]
 
-[merge]
-	tool = studio
-[mergetool "studio"]
-	cmd = studio merge $(cd $(dirname $LOCAL) && pwd)/$(basename $LOCAL) $(cd $(dirname $REMOTE) && pwd)/$(basename $REMOTE) $(cd $(dirname $BASE) && pwd)/$(basename $BASE) $(cd $(dirname $MERGED) && pwd)/$(basename $MERGED)
-          trustExitCode = true
-[diff]
-       tool = studio
-[difftool "studio"]
-       cmd = studio diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process

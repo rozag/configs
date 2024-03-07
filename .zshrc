@@ -111,6 +111,9 @@ advice
 # Prevent brew from randomly breaking stuff...
 export HOMEBREW_NO_AUTO_UPDATE=1
 
+autoload -U compinit
+compinit -i
+
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
 complete -o nospace -C /usr/local/bin/tofu tofu

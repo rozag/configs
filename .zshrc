@@ -18,6 +18,9 @@ export PATH="$ME/configs/script:$PATH"
 # Doom Emacs
 export PATH="$ME/.emacs.d/bin:$PATH"
 
+# Required by Poetry
+export PATH="/Users/rozag/.local/bin:$PATH"
+
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
@@ -119,3 +122,7 @@ complete -o nospace -C /usr/local/bin/terraform terraform
 complete -o nospace -C /usr/local/bin/tofu tofu
 
 eval "$(rbenv init - zsh)"
+
+# Poetry auto-completion
+fpath+=~/.zfunc
+autoload -Uz compinit && compinit

@@ -1,0 +1,58 @@
+### https://docs.astral.sh/ruff/configuration/
+
+# https://docs.astral.sh/ruff/settings/#top-level
+indent-width = 4
+line-length = 80
+required-version = ">=0.4.2" # Ruff version
+target-version = "py312"
+
+# https://docs.astral.sh/ruff/settings/#format
+[format]
+line-ending = "lf"
+
+# https://docs.astral.sh/ruff/settings/#lint
+[lint]
+select = [
+  "A",     # https://docs.astral.sh/ruff/rules/#flake8-builtins-a
+  "ANN",   # https://docs.astral.sh/ruff/rules/#flake8-annotations-ann
+  "ARG",   # https://docs.astral.sh/ruff/rules/#flake8-unused-arguments-arg
+  "ASYNC", # https://docs.astral.sh/ruff/rules/#flake8-async-async
+  "B",     # https://docs.astral.sh/ruff/rules/#flake8-bugbear-b
+  "BLE",   # https://docs.astral.sh/ruff/rules/#flake8-blind-except-bleo
+  "C4",    # https://docs.astral.sh/ruff/rules/#flake8-comprehensions-c4
+  "C90",   # https://docs.astral.sh/ruff/rules/#mccabe-c90
+  "COM",   # https://docs.astral.sh/ruff/rules/#flake8-commas-com
+  "D",     # https://docs.astral.sh/ruff/rules/#pydocstyle-d
+  "DTZ",   # https://docs.astral.sh/ruff/rules/#flake8-datetimez-dtz
+  "E",     # https://docs.astral.sh/ruff/rules/#pycodestyle-e-w
+  "F",     # https://docs.astral.sh/ruff/rules/#pyflakes-f
+  "I",     # https://docs.astral.sh/ruff/rules/#isort-i
+  "ICN",   # https://docs.astral.sh/ruff/rules/#flake8-import-conventions-icn
+  "N",     # https://docs.astral.sh/ruff/rules/#pep8-naming-n
+  "PIE",   # https://docs.astral.sh/ruff/rules/#flake8-pie-pie
+  "PL",    # https://docs.astral.sh/ruff/rules/#pylint-pl
+  "PT",    # https://docs.astral.sh/ruff/rules/#flake8-pytest-style-pt
+  "PTH",   # https://docs.astral.sh/ruff/rules/#flake8-use-pathlib-pth
+  "Q",     # https://docs.astral.sh/ruff/rules/#flake8-quotes-q
+  "RET",   # https://docs.astral.sh/ruff/rules/#flake8-return-ret
+  "RSE",   # https://docs.astral.sh/ruff/rules/#flake8-raise-rse
+  "RUF",   # https://docs.astral.sh/ruff/rules/#ruff-specific-rules-ruf
+  "S",     # https://docs.astral.sh/ruff/rules/#flake8-bandit-s
+  "SIM",   # https://docs.astral.sh/ruff/rules/#flake8-simplify-sim
+  "SLF",   # https://docs.astral.sh/ruff/rules/#flake8-self-slf
+  "T10",   # https://docs.astral.sh/ruff/rules/#flake8-debugger-t10
+  "T20",   # https://docs.astral.sh/ruff/rules/#flake8-print-t20
+  "TID",   # https://docs.astral.sh/ruff/rules/#flake8-tidy-imports-tid
+  "UP",    # https://docs.astral.sh/ruff/rules/#pyupgrade-up
+  "W",     # https://docs.astral.sh/ruff/rules/#pycodestyle-e-w
+]
+ignore = [
+  "D100", # Missing docstring in public module
+  "D101", # Missing docstring in public class
+  "D102", # Missing docstring in public method
+  "D103", # Missing docstring in public function
+  "D104", # Missing docstring in public package
+  "D105", # Missing docstring in magic method
+  "D106", # Missing docstring in public nested class
+  "D107", # Missing docstring in __init__
+]

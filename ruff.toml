@@ -8,7 +8,10 @@ target-version = "py312"
 
 # https://docs.astral.sh/ruff/settings/#format
 [format]
+indent-style = "space"
 line-ending = "lf"
+quote-style = "double"
+skip-magic-trailing-comma = false
 
 # https://docs.astral.sh/ruff/settings/#lint
 [lint]
@@ -47,6 +50,9 @@ select = [
   "W",     # https://docs.astral.sh/ruff/rules/#pycodestyle-e-w
 ]
 ignore = [
+  "ANN101", # Missing type annotation for {name} in method
+  "ANN102", # Missing type annotation for {name} in classmethod
+  "COM812", # Trailing comma missing
   "D100",   # Missing docstring in public module
   "D101",   # Missing docstring in public class
   "D102",   # Missing docstring in public method
@@ -57,8 +63,5 @@ ignore = [
   "D107",   # Missing docstring in __init__
   "D203",   # 1 blank line required before class docstring
   "D212",   # Multi-line docstring summary should start at the first line
-  "COM812", # Trailing comma missing
-  "ANN101", # Missing type annotation for {name} in method
-  "ANN102", # Missing type annotation for {name} in classmethod
-  "PT009",  # Use a regular assert instead of unittest-style {assertion}
+  "S101",   # Use of assert detected
 ]

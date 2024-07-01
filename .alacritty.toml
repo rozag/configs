@@ -225,5 +225,5 @@ dynamic_title = true
 startup_mode = "Windowed"
 
 [window.dimensions]
-columns = 220
+columns = 192
 lines = 64

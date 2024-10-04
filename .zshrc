@@ -126,3 +126,7 @@ eval "$(rbenv init - zsh)"
 # Poetry auto-completion
 fpath+=~/.zfunc
 autoload -Uz compinit && compinit
+
+# Disable autocorrect
+unsetopt correct
+unsetopt correct_all

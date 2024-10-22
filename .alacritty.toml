@@ -222,8 +222,4 @@ program = "/bin/zsh"
 decorations = "buttonless"
 dynamic_padding = true
 dynamic_title = true
-startup_mode = "Windowed"
-
-[window.dimensions]
-columns = 192
-lines = 64
+startup_mode = "Maximized"

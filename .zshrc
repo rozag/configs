@@ -21,7 +21,11 @@ export PATH="$ME/.emacs.d/bin:$PATH"
 # Required by Poetry
 export PATH="/Users/rozag/.local/bin:$PATH"
 
-plugins=(git)
+plugins=(
+  git
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+)
 
 source $ZSH/oh-my-zsh.sh
 

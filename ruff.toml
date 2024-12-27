@@ -50,8 +50,6 @@ select = [
   "W",     # https://docs.astral.sh/ruff/rules/#pycodestyle-e-w
 ]
 ignore = [
-  "ANN101",  # Missing type annotation for {name} in method
-  "ANN102",  # Missing type annotation for {name} in classmethod
   "BLE001",  # Do not catch blind exception
   "COM812",  # Trailing comma missing
   "D100",    # Missing docstring in public module

@@ -21,6 +21,9 @@ export PATH="$ME/.emacs.d/bin:$PATH"
 # Required by Poetry
 export PATH="/Users/rozag/.local/bin:$PATH"
 
+# OpenJDK
+export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
+
 plugins=(
   git
   zsh-syntax-highlighting

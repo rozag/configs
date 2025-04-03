@@ -59,6 +59,8 @@ alias pip='pip3'
 
 alias pod='podman'
 
+alias t="task"
+
 ### BEGIN UNALIAS GIT PLUGIN ###
 unalias glg
 unalias glgg

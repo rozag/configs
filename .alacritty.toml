@@ -1,5 +1,5 @@
-import = ["/Users/rozag/configs/alacritty-themes/themes/monokai_pro.toml"]
-live_config_reload = true
+general.import = ["/Users/rozag/configs/alacritty-themes/themes/monokai_pro.toml"]
+general.live_config_reload = true
 
 [bell]
 animation = "EaseOutExpo"
@@ -214,7 +214,7 @@ history = 20000
 save_to_clipboard = true
 semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
 
-[shell]
+[terminal.shell]
 args = ["-l", "-c", "tmux attach || tmux"]
 program = "/bin/zsh"
 

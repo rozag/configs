@@ -29,6 +29,7 @@ select = [
   "DTZ",   # https://docs.astral.sh/ruff/rules/#flake8-datetimez-dtz
   "E",     # https://docs.astral.sh/ruff/rules/#pycodestyle-e-w
   "F",     # https://docs.astral.sh/ruff/rules/#pyflakes-f
+  "FIX",   # https://docs.astral.sh/ruff/rules/#flake8-fixme-fix
   "I",     # https://docs.astral.sh/ruff/rules/#isort-i
   "ICN",   # https://docs.astral.sh/ruff/rules/#flake8-import-conventions-icn
   "N",     # https://docs.astral.sh/ruff/rules/#pep8-naming-n

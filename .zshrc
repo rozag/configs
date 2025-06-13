@@ -117,9 +117,6 @@ bindkey "^n" history-beginning-search-forward
 source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
 source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
 
-# Print great advice
-advice
-
 # Prevent brew from randomly breaking stuff...
 export HOMEBREW_NO_AUTO_UPDATE=1
 
@@ -139,3 +136,6 @@ autoload -Uz compinit && compinit
 # Disable autocorrect
 unsetopt correct
 unsetopt correct_all
+
+advice
+# fastfetch

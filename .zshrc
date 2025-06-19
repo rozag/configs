@@ -77,19 +77,19 @@ unalias gunwip
 ### BEGIN MARKS ###
 export MARKPATH=$HOME/.marks
 function jump {
-    cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
+  cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
 }
 function mark {
-    mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
+  mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
 }
 function unmark {
-    rm -i "$MARKPATH/$1"
+  rm -i "$MARKPATH/$1"
 }
 function marks {
-    ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/ -/g' && echo
+  ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/ -/g' && echo
 }
 function _completemarks {
-    reply=($(ls $MARKPATH))
+  reply=($(ls $MARKPATH))
 }
 
 compctl -K _completemarks jump
@@ -136,6 +136,38 @@ autoload -Uz compinit && compinit
 # Disable autocorrect
 unsetopt correct
 unsetopt correct_all
+
+function github_loc() {
+  if [[ $# -eq 0 ]]; then
+    echo "Usage: github_loc <github-url-or-username/reponame>"
+    echo "Examples:"
+    echo "  github_loc octocat/Hello-World"
+    echo "  github_loc https://github.com/octocat/Hello-World"
+    echo "  github_loc https://github.com/octocat/Hello-World.git"
+    return 1
+  fi
+
+  local input="$1"
+  local repo_path
+
+  # Parse input to extract username/reponame
+  if [[ "$input" == *"github.com"* ]]; then
+    # Extract from URL: capture first two path components after github.com/
+    repo_path=$(echo "$input" | sed -E 's|.*github\.com/([^/]+/[^/]+)/?.*|\1|' | sed 's/\.git$//')
+  else
+    repo_path="$input"
+  fi
+
+  # Validate format (should be exactly username/reponame)
+  if [[ ! "$repo_path" =~ ^[^/]+/[^/]+$ ]]; then
+    echo "Error: Invalid repository format. Expected username/reponame"
+    echo "Parsed: '$repo_path'"
+    return 1
+  fi
+
+  echo "Fetching line count for: $repo_path"
+  curl -s -L "https://api.codetabs.com/v1/loc?github=$repo_path" | jq
+}
 
 advice
 # fastfetch

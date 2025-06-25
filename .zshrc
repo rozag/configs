@@ -36,6 +36,7 @@ export ENABLE_CORRECTION="true"
 
 alias vi="nvim"
 alias vim="nvim"
+alias nvdiff="nvim -d -O" # neovim diff with vertical split
 
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"

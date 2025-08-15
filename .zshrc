@@ -57,6 +57,7 @@ alias ctags="`brew --prefix`/bin/ctags"
 
 alias python='python3'
 alias pip='pip3'
+alias vact='source .venv/bin/activate'
 
 alias pod='podman'
 

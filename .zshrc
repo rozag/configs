@@ -171,5 +171,11 @@ function github_loc() {
   curl -s -L "https://api.codetabs.com/v1/loc?github=$repo_path" | jq
 }
 
+uuid() {
+  local generated_uuid=$(python3 -c "import uuid; print(uuid.uuid4())")
+  echo -n "$generated_uuid" | pbcopy
+  echo "$generated_uuid copied to clipboard"
+}
+
 advice
 # fastfetch

@@ -177,5 +177,102 @@ uuid() {
   echo "$generated_uuid copied to clipboard"
 }
 
+function run_n_parallel() {
+    # Disable job control messages ([1] done...) locally for this function
+    setopt LOCAL_OPTIONS NO_NOTIFY NO_MONITOR
+
+    # 1. Input Validation
+    local count=$1
+    local cmd=$2
+
+    if [[ -z "$count" || -z "$cmd" ]]; then
+        echo "Usage: run_n_parallel <count> <command>"
+        echo "Example: run_n_parallel 5 'pytest tests/test_llm.py'"
+        return 1
+    fi
+
+    if ! [[ "$count" =~ ^[0-9]+$ ]] || (( count < 1 )); then
+        echo "Error: Count must be an integer >= 1"
+        return 1
+    fi
+
+    # 2. Setup Infrastructure
+    # Create a temporary directory for log isolation
+    local tmp_dir=$(mktemp -d)
+    local pids=()
+
+    # Define a cleanup trap to kill background jobs and remove tmp files
+    # if you Ctrl+C (INT) or the script exits.
+    cleanup() {
+        # Kill all child processes tracked in pids array if they are still running
+        if (( ${#pids[@]} > 0 )); then
+            kill "${pids[@]}" 2>/dev/null
+        fi
+        rm -rf "$tmp_dir"
+    }
+    trap cleanup EXIT INT TERM
+
+    echo "🚀 Starting $count parallel runs of: $cmd"
+    echo "----------------------------------------"
+
+    # 3. Execution Loop (Fan-out)
+    for i in {1..$count}; do
+        (
+            # Force standard tools to emit colors even though output is redirected.
+            # Most modern CLI tools (Node, Python, Ruby, Pytest) respect these.
+            export FORCE_COLOR=1
+            export CLICOLOR_FORCE=1
+            export PYTHONUNBUFFERED=1
+
+            # Exec the command, redirect stdout/stderr to log, save exit code
+            eval "$cmd" > "${tmp_dir}/${i}.log" 2>&1
+            echo $? > "${tmp_dir}/${i}.exit"
+        ) &
+        pids+=($!)
+    done
+
+    # 4. Monitoring Loop
+    local finished_count=0
+    # Hide cursor for cleaner UI
+    tput civis
+
+    while (( finished_count < count )); do
+        sleep 5
+        # Use Zsh glob qualifier (N) which silences the error if no files exist
+        # and creates an empty list instead. We then count the array length.
+        local done_files=("${tmp_dir}"/*.exit(N))
+        finished_count=${#done_files}
+
+        # \033[2K clears the entire current line before printing new status
+        printf "\r\033[2K⏳ Progress: %d / %d completed..." "$finished_count" "$count"
+    done
+
+    # Restore cursor
+    tput cnorm
+    echo -e "\n\n🎉 All runs completed. Aggregating outputs...\n"
+
+    # 5. Output Aggregation (Fan-in)
+    local global_fail=0
+
+    for i in {1..$count}; do
+        local exit_code=$(cat "${tmp_dir}/${i}.exit")
+        local status_icon="✅"
+        if (( exit_code != 0 )); then
+            status_icon="❌"
+            global_fail=1
+        fi
+
+        echo "----------------------------------------"
+        echo "$status_icon Run #$i (Exit Code: $exit_code)"
+        echo "----------------------------------------"
+        # Dump the content, preserving colors captured in the file
+        cat "${tmp_dir}/${i}.log"
+        echo ""
+    done
+
+    # Return failure if any single run failed, useful for CI or chaining
+    return $global_fail
+}
+
 advice
 # fastfetch

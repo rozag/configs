@@ -197,14 +197,10 @@ function run_n_parallel() {
     fi
 
     # 2. Setup Infrastructure
-    # Create a temporary directory for log isolation
     local tmp_dir=$(mktemp -d)
     local pids=()
 
-    # Define a cleanup trap to kill background jobs and remove tmp files
-    # if you Ctrl+C (INT) or the script exits.
     cleanup() {
-        # Kill all child processes tracked in pids array if they are still running
         if (( ${#pids[@]} > 0 )); then
             kill "${pids[@]}" 2>/dev/null
         fi
@@ -218,59 +214,77 @@ function run_n_parallel() {
     # 3. Execution Loop (Fan-out)
     for i in {1..$count}; do
         (
-            # Force standard tools to emit colors even though output is redirected.
-            # Most modern CLI tools (Node, Python, Ruby, Pytest) respect these.
             export FORCE_COLOR=1
             export CLICOLOR_FORCE=1
             export PYTHONUNBUFFERED=1
 
-            # Exec the command, redirect stdout/stderr to log, save exit code
             eval "$cmd" > "${tmp_dir}/${i}.log" 2>&1
             echo $? > "${tmp_dir}/${i}.exit"
         ) &
         pids+=($!)
     done
 
-    # 4. Monitoring Loop
+    # 4. Monitoring Loop (Improved)
     local finished_count=0
-    # Hide cursor for cleaner UI
     tput civis
 
-    while (( finished_count < count )); do
-        sleep 5
-        # Use Zsh glob qualifier (N) which silences the error if no files exist
-        # and creates an empty list instead. We then count the array length.
+    while true; do
+        # Check files immediately
         local done_files=("${tmp_dir}"/*.exit(N))
         finished_count=${#done_files}
 
-        # \033[2K clears the entire current line before printing new status
-        printf "\r\033[2K⏳ Progress: %d / %d completed..." "$finished_count" "$count"
+        # Update UI
+        printf "\r\033[2K🤖 Progress: %d / %d completed..." "$finished_count" "$count"
+
+        # Break if done
+        (( finished_count >= count )) && break
+
+        # Sleep AFTER checking/printing (and reduced to 1s for better responsiveness)
+        sleep 1
     done
 
-    # Restore cursor
     tput cnorm
     echo -e "\n\n🎉 All runs completed. Aggregating outputs...\n"
 
-    # 5. Output Aggregation (Fan-in)
+    # 5. Output Aggregation & Summary (Fan-in)
     local global_fail=0
+    local success_cnt=0
+    local fail_cnt=0
+    local failed_ids=()
 
     for i in {1..$count}; do
         local exit_code=$(cat "${tmp_dir}/${i}.exit")
         local status_icon="✅"
+
         if (( exit_code != 0 )); then
             status_icon="❌"
             global_fail=1
+            (( fail_cnt++ ))
+            failed_ids+=($i)
+        else
+            (( success_cnt++ ))
         fi
 
         echo "----------------------------------------"
         echo "$status_icon Run #$i (Exit Code: $exit_code)"
         echo "----------------------------------------"
-        # Dump the content, preserving colors captured in the file
         cat "${tmp_dir}/${i}.log"
         echo ""
     done
 
-    # Return failure if any single run failed, useful for CI or chaining
+    # 6. Final Summary
+    echo "========================================"
+    echo "📊 RUN SUMMARY"
+    echo "========================================"
+    echo "✅ Successful: $success_cnt"
+    echo "❌ Failed:     $fail_cnt"
+
+    if (( fail_cnt > 0 )); then
+        # Join array with commas
+        echo "🚧 Failed IDs: ${failed_ids[*]}"
+    fi
+    echo ""
+
     return $global_fail
 }
 

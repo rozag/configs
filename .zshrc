@@ -288,5 +288,159 @@ function run_n_parallel() {
     return $global_fail
 }
 
+function tm_twain() {
+    if [[ -z "$TMUX" ]]; then
+        echo "Error: Must be run inside a tmux session."
+        return 1
+    fi
+
+    # ==========================================
+    # WINDOW 1: twain-nvim
+    # ==========================================
+    local main_win=$(tmux display-message -p "#{window_id}")
+    tmux rename-window "twain-nvim"
+    tmux send-keys "jm twain" C-m
+    tmux send-keys "nvim" C-m
+
+
+    # ==========================================
+    # WINDOW 2: twain-term
+    # ==========================================
+    tmux new-window -n "twain-term"
+
+    # --- Layout Construction ---
+
+    # 1. Start with one big pane.
+    # 2. Split it to create the RIGHT side (66% width).
+    #    (Focus moves to the new Right pane).
+    tmux split-window -h -p 66
+
+    # 3. Split that RIGHT side in half to create the FAR RIGHT column.
+    #    (Focus moves to the new Far Right pane).
+    tmux split-window -h -p 50
+
+    # 4. We are now in the 3rd Column. Split it vertically.
+    #    (Focus moves to the new Bottom pane).
+    tmux split-window -v -p 66
+
+    # 5. Split that Bottom pane vertically.
+    #    (Focus moves to the new Bottom-most pane).
+    tmux split-window -v -p 50
+
+    # --- Command Injection via Navigation ---
+
+    # We are currently in the Bottom Right corner (Col 3, Row 3).
+    # Target: Col 3, Row 3
+    tmux send-keys "jm twainpy" C-m
+
+    # Move UP -> Target: Col 3, Row 2 (Middle Right)
+    tmux select-pane -U
+    tmux send-keys "jm twain" C-m
+    tmux send-keys "t proxy:rmq" C-m
+
+    # Move UP -> Target: Col 3, Row 1 (Top Right)
+    tmux select-pane -U
+    tmux send-keys "jm twain" C-m
+    tmux send-keys "t docker:sales:infra-up" C-m
+
+    # Move LEFT -> Target: Col 2 (Middle Column)
+    tmux select-pane -L
+    tmux send-keys "jm twainpy" C-m
+    tmux send-keys "t lt" C-m
+
+    # Move LEFT -> Target: Col 1 (Far Left Column)
+    tmux select-pane -L
+    tmux send-keys "jm twainpy" C-m
+
+
+    # ==========================================
+    # WINDOW 3: py-play
+    # ==========================================
+    tmux new-window -n "py-play"
+
+    # Split horizontally. New pane (Right) gets 67% (2/3rds).
+    # Old pane (Left) stays at 33% (1/3rd).
+    tmux split-window -h -p 67
+
+    # --- Command Execution ---
+
+    # STRATEGY: Explicitly go LEFT first to target the small pane.
+    # This works whether focus started on Left OR Right.
+    tmux select-pane -L
+
+    # Left Pane (1/3)
+    tmux send-keys "jm pyplay" C-m
+    tmux send-keys "vact" C-m
+    tmux send-keys "t r" C-m
+
+    # Now explicit move RIGHT to target the big pane.
+    tmux select-pane -R
+
+    # Right Pane (2/3)
+    tmux send-keys "jm pyplay" C-m
+    tmux send-keys "nvim main.py" C-m
+
+    # ==========================================
+    # FINALIZE
+    # ==========================================
+    # Return to the specific ID we captured at the start
+    tmux select-window -t "$main_win"
+}
+
+function tm_upp() {
+    if [[ -z "$TMUX" ]]; then
+        echo "Error: Must be run inside a tmux session."
+        return 1
+    fi
+
+    # ==========================================
+    # WINDOW 1: upp-nvim
+    # ==========================================
+    local main_win=$(tmux display-message -p "#{window_id}")
+    tmux rename-window "upp-nvim"
+    tmux send-keys "jm upp" C-m
+    tmux send-keys "nvim" C-m
+
+
+    # ==========================================
+    # WINDOW 2: upp-term
+    # ==========================================
+    tmux new-window -n "upp-term"
+    tmux send-keys "jm upp" C-m
+    tmux send-keys "t l" C-m
+
+
+    # ==========================================
+    # WINDOW 3: go-play
+    # ==========================================
+    tmux new-window -n "go-play"
+
+    # Split horizontally. New pane (Right) gets 67% (2/3rds).
+    # Old pane (Left) stays at 33% (1/3rd).
+    tmux split-window -h -p 67
+
+    # --- Command Execution ---
+
+    # STRATEGY: Explicitly go LEFT first to target the small pane.
+    tmux select-pane -L
+
+    # Left Pane (1/3)
+    tmux send-keys "jm goplay" C-m
+    tmux send-keys "t r" C-m
+
+    # Now explicit move RIGHT to target the big pane.
+    tmux select-pane -R
+
+    # Right Pane (2/3)
+    tmux send-keys "jm goplay" C-m
+    tmux send-keys "nvim main.go" C-m
+
+    # ==========================================
+    # FINALIZE
+    # ==========================================
+    # Return to the specific ID we captured at the start
+    tmux select-window -t "$main_win"
+}
+
 advice
 # fastfetch

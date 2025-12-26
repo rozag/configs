@@ -178,16 +178,14 @@ uuid() {
 }
 
 function run_n_parallel() {
-    # Disable job control messages ([1] done...) locally for this function
+    # Disable job control messages locally
     setopt LOCAL_OPTIONS NO_NOTIFY NO_MONITOR
 
-    # 1. Input Validation
     local count=$1
     local cmd=$2
 
     if [[ -z "$count" || -z "$cmd" ]]; then
         echo "Usage: run_n_parallel <count> <command>"
-        echo "Example: run_n_parallel 5 'pytest tests/test_llm.py'"
         return 1
     fi
 
@@ -196,7 +194,6 @@ function run_n_parallel() {
         return 1
     fi
 
-    # 2. Setup Infrastructure
     local tmp_dir=$(mktemp -d)
     local pids=()
 
@@ -211,42 +208,39 @@ function run_n_parallel() {
     echo "🚀 Starting $count parallel runs of: $cmd"
     echo "----------------------------------------"
 
-    # 3. Execution Loop (Fan-out)
+    # 3. Execution Loop (FIXED: nested subshell for eval)
     for i in {1..$count}; do
         (
             export FORCE_COLOR=1
             export CLICOLOR_FORCE=1
             export PYTHONUNBUFFERED=1
 
-            eval "$cmd" > "${tmp_dir}/${i}.log" 2>&1
+            # Wrap eval in parentheses so 'exit' inside the command
+            # doesn't kill the logic that writes the status file.
+            ( eval "$cmd" ) > "${tmp_dir}/${i}.log" 2>&1
+
+            # Now we capture the exit code of that inner subshell
             echo $? > "${tmp_dir}/${i}.exit"
         ) &
         pids+=($!)
     done
 
-    # 4. Monitoring Loop (Improved)
+    # 4. Monitoring Loop
     local finished_count=0
     tput civis
 
     while true; do
-        # Check files immediately
         local done_files=("${tmp_dir}"/*.exit(N))
         finished_count=${#done_files}
-
-        # Update UI
         printf "\r\033[2K🤖 Progress: %d / %d completed..." "$finished_count" "$count"
-
-        # Break if done
         (( finished_count >= count )) && break
-
-        # Sleep AFTER checking/printing (and reduced to 1s for better responsiveness)
         sleep 1
     done
 
     tput cnorm
     echo -e "\n\n🎉 All runs completed. Aggregating outputs...\n"
 
-    # 5. Output Aggregation & Summary (Fan-in)
+    # 5. Output Aggregation (Only print failures)
     local global_fail=0
     local success_cnt=0
     local fail_cnt=0
@@ -254,22 +248,20 @@ function run_n_parallel() {
 
     for i in {1..$count}; do
         local exit_code=$(cat "${tmp_dir}/${i}.exit")
-        local status_icon="✅"
 
         if (( exit_code != 0 )); then
-            status_icon="❌"
             global_fail=1
             (( fail_cnt++ ))
             failed_ids+=($i)
+
+            echo "----------------------------------------"
+            echo "❌ Run #$i (Exit Code: $exit_code)"
+            echo "----------------------------------------"
+            cat "${tmp_dir}/${i}.log"
+            echo ""
         else
             (( success_cnt++ ))
         fi
-
-        echo "----------------------------------------"
-        echo "$status_icon Run #$i (Exit Code: $exit_code)"
-        echo "----------------------------------------"
-        cat "${tmp_dir}/${i}.log"
-        echo ""
     done
 
     # 6. Final Summary
@@ -280,7 +272,6 @@ function run_n_parallel() {
     echo "❌ Failed:     $fail_cnt"
 
     if (( fail_cnt > 0 )); then
-        # Join array with commas
         echo "🚧 Failed IDs: ${failed_ids[*]}"
     fi
     echo ""

@@ -34,6 +34,9 @@ source $ZSH/oh-my-zsh.sh
 
 export ENABLE_CORRECTION="true"
 
+export PROMPT='$(virtualenv_prompt_info)%F{green}%n%f%F{cyan}@%F{green}%m%f %B%F{blue}%~%f%b $(ruby_prompt_info) $(git_prompt_info)
+❯ %f' # ❱❯
+
 alias vi="nvim"
 alias vim="nvim"
 alias nvdiff="nvim -d -O" # neovim diff with vertical split

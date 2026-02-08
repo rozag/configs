@@ -14,3 +14,10 @@
 	pager = less
 [init]
 	defaultBranch = main
+[rerere]
+	enabled = true
+[maintenance]
+	repo = /Users/rozag/workspace/twain
+	repo = /Users/rozag/workspace/upp
+	repo = /Users/rozag/workspace/real-talk
+	repo = /Users/rozag/workspace/cabasi

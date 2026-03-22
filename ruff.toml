@@ -67,4 +67,5 @@ ignore = [
   "PLR0911", # Too many return statements
   "PLR0913", # Too many arguments in function definition
   "S101",    # Use of assert detected
+  "TID252", # Absolute / relative imports from siblings are recommended by PEP 8
 ]

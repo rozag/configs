@@ -1,0 +1,5 @@
+[user]
+  name = Alexey Mileev
+  email = a.mileev@datamonsters.com
+[core]
+  sshCommand = ssh -i ~/.ssh/id_ed25519_dm -o IdentitiesOnly=yes
